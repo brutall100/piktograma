@@ -1,6 +1,9 @@
 # CLAUDE.md – instrukcija AI asistentui
 
-Tai **business-site-node-starter** – smulkaus verslo svetainės šablonas (Node.js 22 + Express + EJS + SQLite).
+Tai **Piktograma** (reklamos paslaugos, Jonava) – svetainė, sukurta pagal **business-site-node-starter** šabloną (Node.js 22 + Express + EJS + SQLite).
+Piktogramos specifika: tema `site.css` pabaigoje („PIKTOGRAMA TEMA“), `heroEffect: 'squares'` (`views/public/partials/squares.ejs`),
+šviesios sekcijos `.section--paper`, vizitinės kortelės kūrėjas (`/vizitine-kortele`: `views/public/card.ejs` + `public/js/card.js`, modulis `cardMaker`),
+paslaugų ikonos (`icon` laukas, `src/icons.js`), antras telefonas (`phone2`), galerijos aprašai `seed-assets/captions.json`.
 Vieša svetainė LT/EN + valdymo panelė `/admin`. Kilmė: KD Legacy šokių studijos projektas.
 
 **Neskaityk viso kodo.** Naujam klientui beveik visada užtenka šių failų (eilės tvarka):

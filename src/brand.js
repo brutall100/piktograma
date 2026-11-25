@@ -2,7 +2,7 @@
 
 /**
  * ============================================================
- *  PROJEKTO NUSTATYMAI – pirmas failas, kurį keičiate naujam klientui.
+ *  PROJEKTO NUSTATYMAI – PIKTOGRAMA (reklamos paslaugos, Jonava)
  * ============================================================
  *
  *  Spalvos ir šriftai: public/css/site.css (`:root` pradžioje) ir public/css/admin.css.
@@ -12,28 +12,34 @@
  */
 module.exports = {
   // Pavadinimas, kol administratorius jo nepakeitė Nustatymuose.
-  defaultName: 'Jūsų verslas',
+  defaultName: 'Piktograma',
+
+  // Rašytinis užrašas po tekstiniu logotipu (kaip vizitinėje kortelėje).
+  // Naudojamas, kai pavadinimas – vienas žodis. null – nerodyti.
+  logoScript: 'reklamos paslaugos',
 
   // Kurios skiltys įjungtos. Išjungta skiltis dingsta iš svetainės ir admin panelės.
   modules: {
     services: true, // Paslaugos (kortelės)
     schedule: false, // Savaitės tvarkaraštis (studijoms, būreliams, sporto klubams)
-    team: true, // Komanda
-    prices: true, // Kainos
-    events: true, // Renginiai
-    news: true, // Naujienos
-    gallery: true, // Galerija
-    testimonials: true, // Atsiliepimai
+    team: false, // Komanda
+    prices: true, // Kainos (orientacinės)
+    events: false, // Renginiai
+    news: true, // Naujienos ir akcijos
+    gallery: true, // Darbų galerija
+    testimonials: true, // Atsiliepimai (rodomi tik kai yra bent vienas)
     faq: true, // D.U.K.
+    cardMaker: true, // Vizitinės kortelės kūrėjas (/vizitine-kortele)
   },
 
   // Pradinio ekrano efektas, kai neįkeltas fono vaizdo įrašas:
+  //   'squares'    – įstrižainė ir rombų kompozicija (kaip Piktogramos vizitinėje)
   //   'spotlights' – judantys prožektorių spinduliai
   //   'dancers'    – spinduliai + neoniniai šokantys siluetai (šokių studijoms)
   //   'none'       – ramus fonas
-  heroEffect: 'spotlights',
+  heroEffect: 'squares',
 
-  // Plaukiojančios ikonos fone (natos, žvaigždutės, žiedai…). false – išjungti.
+  // Plaukiojančios figūros fone (Piktogramai – rombai). false – išjungti.
   floatingIcons: true,
 
   // Kūrėjo nuoroda poraštėje. null – nerodyti.

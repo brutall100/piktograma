@@ -20,6 +20,22 @@ const WEEKDAYS = [
   { value: 7, label: 'Sekmadienis' },
 ];
 
+/** Paslaugų ikonos (src/icons.js). */
+const SERVICE_ICONS = [
+  { value: 'diamond', label: 'Rombas (numatyta)' },
+  { value: 'card', label: 'Vizitinė kortelė' },
+  { value: 'print', label: 'Spausdintuvas / spauda' },
+  { value: 'sign', label: 'Iškaba / stendas' },
+  { value: 'lightbox', label: 'Šviesdėžė' },
+  { value: 'car', label: 'Automobilis' },
+  { value: 'shirt', label: 'Marškinėliai' },
+  { value: 'rollup', label: 'Roll-up stendas' },
+  { value: 'sticker', label: 'Lipdukas' },
+  { value: 'design', label: 'Dizainas' },
+  { value: 'calendar', label: 'Kalendorius' },
+  { value: 'image', label: 'Paveikslėlis' },
+];
+
 const today = () => new Date().toISOString().slice(0, 10);
 
 const resources = {
@@ -75,7 +91,7 @@ const resources = {
 
   gallery: {
     table: 'gallery',
-    label: 'Galerija',
+    label: 'Darbų galerija',
     addLabel: 'Pridėti vieną nuotrauką',
     icon: 'image',
     intro: 'Nuotraukos automatiškai sumažinamos ir optimizuojamos. Galite įkelti kelias iš karto.',
@@ -111,6 +127,14 @@ const resources = {
       { name: 'description', label: 'Aprašymas', type: 'textarea', i18n: true, rows: 4 },
       { name: 'tag1', label: 'Žymė 1', type: 'text', i18n: true, placeholder: 'pvz. 60 min.' },
       { name: 'tag2', label: 'Žymė 2', type: 'text', i18n: true, placeholder: 'pvz. nuo 30 €' },
+      {
+        name: 'icon',
+        label: 'Ikona',
+        type: 'select',
+        options: SERVICE_ICONS,
+        default: 'diamond',
+        help: 'Rodoma paslaugos kortelėje, kai neįkelta nuotrauka.',
+      },
       { name: 'image', label: 'Nuotrauka (nebūtina)', type: 'image' },
     ],
   },
@@ -157,7 +181,7 @@ const resources = {
     fields: [
       { name: 'name', label: 'Vardas ir pavardė', type: 'text', required: true },
       { name: 'role', label: 'Pareigos', type: 'text', i18n: true, placeholder: 'pvz. Vadovė' },
-      { name: 'bio', label: 'Aprašymas', type: 'textarea', i18n: true, rows: 4 },
+      { name: 'bio', label: 'Aprašymas', type: 'textarea', i18n: true, rows: 8, help: 'Tuščia eilutė – nauja pastraipa. Svetainėje rodomos pirmos 4 eilutės ir mygtukas „Skaityti daugiau“.' },
       { name: 'image', label: 'Nuotrauka', type: 'image' },
       { name: 'instagram', label: 'Instagram nuoroda', type: 'url' },
     ],
@@ -166,20 +190,20 @@ const resources = {
   prices: {
     table: 'prices',
     label: 'Kainos',
-    addLabel: 'Naujas planas',
+    addLabel: 'Nauja kaina',
     icon: 'tag',
-    intro: 'Kainų planai / paketai.',
+    intro: 'Orientacinės kainos. Kaina, prasidedanti žodžiu „nuo“, rodoma su mažu „nuo“ prieš skaičių.',
     sortable: true,
     list: [
       { field: 'name_lt', label: 'Pavadinimas', main: true },
       { field: 'price', label: 'Kaina' },
-      { field: 'period_lt', label: 'Laikotarpis' },
+      { field: 'period_lt', label: 'Kiekis' },
       { field: 'highlighted', label: 'Išskirtas', type: 'bool' },
     ],
     fields: [
       { name: 'name', label: 'Pavadinimas', type: 'text', i18n: true, required: true },
-      { name: 'price', label: 'Kaina', type: 'text', required: true, placeholder: 'pvz. 45 €' },
-      { name: 'period', label: 'Laikotarpis', type: 'text', i18n: true, placeholder: 'pvz. / mėn.' },
+      { name: 'price', label: 'Kaina', type: 'text', required: true, placeholder: 'pvz. nuo 15 €' },
+      { name: 'period', label: 'Kiekis / vienetas', type: 'text', i18n: true, placeholder: 'pvz. / 100 vnt.' },
       { name: 'features', label: 'Kas įeina', type: 'lines', i18n: true, rows: 5, help: 'Kiekvienas punktas – naujoje eilutėje.' },
       { name: 'highlighted', label: 'Išskirti (populiariausias)', type: 'checkbox', default: 0 },
     ],
@@ -279,6 +303,7 @@ const settingsGroups = [
       { name: 'address', label: 'Adresas', type: 'text', placeholder: 'pvz. Gedimino pr. 1' },
       { name: 'city', label: 'Miestas', type: 'text' },
       { name: 'phone', label: 'Telefonas', type: 'text', placeholder: '+370 6xx xxxxx' },
+      { name: 'phone2', label: 'Antras telefonas (mobilus)', type: 'text', placeholder: '+370 6xx xxxxx', help: 'Nebūtina.' },
       { name: 'email', label: 'El. paštas', type: 'text' },
       { name: 'hours', label: 'Darbo laikas', type: 'textarea', i18n: true, rows: 3 },
       { name: 'map_query', label: 'Žemėlapio paieškos tekstas', type: 'text', help: 'Nebūtina. Pagal nutylėjimą žemėlapis ieško „adresas, miestas“.' },

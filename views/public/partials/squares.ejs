@@ -1,0 +1,30 @@
+<%
+  /* Rombų kompozicija pagal Piktogramos vizitinę kortelę.
+     [cx, cy, kraštinė, tipas, animacijos vėlinimas] – tipai: g (pilka), l (šviesi), a (akcentas),
+     o (balta kontūrinė), og (pilka su baltu kontūru), s (šešėlis). */
+  const sqs = [
+    [352, 262, 214, 'a', 0, 14, 14],
+    [338, 248, 214, 'g', 0],
+    [338, 248, 118, 'l', 0],
+    [226, 248, 66, 'o', 1],
+    [450, 248, 66, 'og', 2],
+    [160, 452, 236, 's', 3, -12, 16],
+    [172, 438, 236, 'a', 3],
+    [120, 340, 70, 'o', 4],
+    [452, 112, 44, 'g', 5],
+    [440, 140, 40, 'o', 5],
+    [508, 90, 30, 'o', 6],
+    [532, 76, 18, 'a', 6],
+    [498, 162, 34, 'a', 7],
+    [492, 214, 66, 'a', 2],
+    [480, 228, 66, 'sw', 2, -10, 14],
+    [596, 150, 58, 'a', 8],
+  ];
+%>
+<svg class="squares" viewBox="0 0 640 620" aria-hidden="true" focusable="false">
+  <% sqs.forEach(([cx, cy, w, k, d, dx, dy]) => { const x = cx + (dx || 0), y = cy + (dy || 0); %>
+  <g class="sq sq--<%= k %>" style="--d:<%= d %>">
+    <rect x="<%= x - w / 2 %>" y="<%= y - w / 2 %>" width="<%= w %>" height="<%= w %>" transform="rotate(45 <%= x %> <%= y %>)"/>
+  </g>
+  <% }) %>
+</svg>

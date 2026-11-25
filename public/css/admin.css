@@ -3,17 +3,17 @@
    ========================================================================== */
 
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/unbounded-latin-wght-normal.woff2') format('woff2');
-  font-weight: 200 900;
+  font-family: 'Quicksand';
+  src: url('/fonts/quicksand-latin-wght-normal.woff2') format('woff2');
+  font-weight: 300 700;
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/unbounded-latin-ext-wght-normal.woff2') format('woff2');
-  font-weight: 200 900;
+  font-family: 'Quicksand';
+  src: url('/fonts/quicksand-latin-ext-wght-normal.woff2') format('woff2');
+  font-weight: 300 700;
   font-display: swap;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -35,8 +35,8 @@
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Kaushan Script';
-  src: url('/fonts/kaushan-script-latin-400-normal.woff2') format('woff2');
+  font-family: 'Marck Script';
+  src: url('/fonts/marck-script-latin-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
@@ -47,17 +47,17 @@
   --panel-2: #1a1720;
   --line: rgba(255, 255, 255, 0.1);
   --line-2: rgba(255, 255, 255, 0.18);
-  --accent: #ff2e93; /* tokia pati kaip site.css */
-  --accent-rgb: 255, 46, 147;
+  --accent: #e53126; /* tokia pati kaip site.css */
+  --accent-rgb: 229, 49, 38;
   --accent-dim: rgba(var(--accent-rgb), 0.14);
   --text: #f5f3f7;
   --muted: rgba(255, 255, 255, 0.62);
-  --ink: #0a080c;
-  --ok: #ff2e93;
+  --ink: #0b0b0c;
+  --ok: #3fbf6f;
   --danger: #ff6b6b;
   --radius: 16px;
   --side-w: 264px;
-  --font-display: 'Unbounded', system-ui, sans-serif;
+  --font-display: 'Quicksand', system-ui, sans-serif;
   --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color-scheme: dark;
 }
@@ -177,18 +177,18 @@ button {
 }
 .brand-logo__a {
   font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: -0.05em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
+  color: var(--accent);
 }
 .brand-logo__b {
   display: inline-block;
   margin-left: 0.12em;
-  font-family: 'Kaushan Script', cursive;
+  font-family: 'Marck Script', cursive;
   font-size: 1.1em;
-  color: var(--accent);
-  text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.6);
-  transform: rotate(-6deg) translateY(0.12em);
+  color: #fff;
+  transform: rotate(-3deg) translateY(0.12em);
 }
 .side__brand {
   font-size: 1.4rem;

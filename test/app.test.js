@@ -76,18 +76,21 @@ async function login() {
 /* ------------------------------------------------------------------ */
 
 test('viešieji puslapiai veikia LT ir EN kalbomis', async () => {
-  for (const url of ['/', '/en', '/naujienos', '/en/news', '/renginiai', '/en/events', '/galerija', '/en/gallery', '/privatumas', '/en/privacy']) {
+  for (const url of ['/', '/en', '/naujienos', '/en/news', '/galerija', '/en/gallery', '/vizitine-kortele', '/en/business-card', '/privatumas', '/en/privacy']) {
     const res = await fetch(base + url);
     assert.equal(res.status, 200, url);
   }
   const lt = await (await fetch(base + '/')).text();
   assert.match(lt, /<html lang="lt">/);
   assert.match(lt, /class="brand-logo/, 'logotipas įtrauktas');
-  assert.match(lt, /Pirmoji paslauga/);
+  assert.match(lt, /Vizitinės kortelės/);
+  assert.match(lt, /\+370 349 61777/);
+  assert.match(lt, /\+370 685 58816/, 'antras telefonas rodomas');
+  assert.match(lt, /reklamos paslaugos/, 'logotipo rašytinė eilutė');
   assert.match(lt, /Sukūrė <a href="https:\/\/aldas-portfolio\.site\/"/);
   const en = await (await fetch(base + '/en')).text();
   assert.match(en, /<html lang="en">/);
-  assert.match(en, /Get in touch/);
+  assert.match(en, /Get a quote/);
 });
 
 test('naujienos straipsnis pasiekiamas, neteisingas adresas peradresuojamas', async () => {
@@ -96,6 +99,31 @@ test('naujienos straipsnis pasiekiamas, neteisingas adresas peradresuojamas', as
   assert.equal(res.status, 301);
   const ok = await fetch(base + res.headers.get('location'));
   assert.equal(ok.status, 200);
+});
+
+test('vizitinės kortelės kūrėjas: puslapis ir užsakymas į užklausas', async () => {
+  const page = await (await fetch(base + '/vizitine-kortele')).text();
+  assert.match(page, /data-card-maker/);
+  assert.match(page, /\/js\/card\.js/);
+  assert.match(page, /name="template" value="diagonal"/);
+  const token = page.match(/name="token" value="([^"]+)"/)[1];
+  const message = 'Vizitinių kortelių užsakymas (kūrėjas svetainėje)\nKiekis: 250\nVardas, pavardė: Jonas Žemaitis';
+  const res = await fetch(base + '/registracija', {
+    method: 'POST',
+    headers: { ...FORM, accept: 'application/json' },
+    body: form({ token, name: 'Jonas Žemaitis', phone: '+37060000000', service_name: 'Vizitinės kortelės (kūrėjas)', message, consent: '1', website: '' }),
+  });
+  assert.equal(res.status, 200);
+  const row = db.prepare('SELECT * FROM inquiries ORDER BY id DESC LIMIT 1').get();
+  assert.equal(row.service_name, 'Vizitinės kortelės (kūrėjas)');
+  assert.match(row.message, /Kiekis: 250/);
+  const en = await (await fetch(base + '/en/business-card')).text();
+  assert.match(en, /Business card maker/);
+});
+
+test('išjungti renginiai nepasiekiami', async () => {
+  assert.equal((await fetch(base + '/renginiai')).status, 404);
+  assert.equal((await fetch(base + '/en/events')).status, 404);
 });
 
 test('nežinomas puslapis grąžina 404', async () => {
@@ -108,6 +136,7 @@ test('robots.txt ir sitemap.xml', async () => {
   const sm = await (await fetch(base + '/sitemap.xml')).text();
   assert.match(sm, /<urlset/);
   assert.match(sm, /\/en\/news\//);
+  assert.match(sm, /\/vizitine-kortele/);
 });
 
 test('registracijos forma išsaugo užklausą', async () => {

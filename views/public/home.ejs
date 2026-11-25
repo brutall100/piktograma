@@ -15,12 +15,17 @@
 %>
 
 <!-- ============================ HERO ============================ -->
-<section class="hero<%= s.hero_video ? ' hero--video' : (brand.heroEffect === 'dancers' ? ' hero--dancers' : '') %>" id="top">
+<% const fx = s.hero_video ? 'video' : brand.heroEffect; %>
+<section class="hero<%= fx === 'video' ? ' hero--video' : fx === 'dancers' ? ' hero--dancers' : fx === 'squares' ? ' hero--squares' : '' %>" id="top">
   <div class="hero__bg" aria-hidden="true">
     <% if (s.hero_video) { %>
       <video class="hero__video" id="hero-video" src="<%= img(s.hero_video) %>" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="hero__dim"></div>
     <% } %>
-    <% if (brand.heroEffect !== 'none') { %>
+    <% if (fx === 'squares') { %>
+      <div class="hero__paper"></div>
+      <div class="hero__squares"><%- include('partials/squares') %></div>
+    <% } else if (brand.heroEffect !== 'none') { %>
     <div class="hero__beam hero__beam--1"></div>
     <div class="hero__beam hero__beam--2"></div>
     <div class="hero__beam hero__beam--3"></div>
@@ -48,7 +53,7 @@
     <p class="hero__text"><%= S('hero_text') %></p>
     <div class="hero__actions">
       <a class="btn btn--primary btn--lg" href="#registracija"><%= t('hero.cta') %> <%- icon('arrow', 20) %></a>
-      <% if (schedule.length) { %><a class="btn btn--ghost btn--lg" href="#tvarkarastis"><%= t('hero.cta2') %></a><% } %>
+      <% if (has.cardMaker) { %><a class="btn btn--ghost btn--lg" href="<%= paths.card %>"><%- icon('card', 20) %> <%= t('hero.cta2') %></a><% } else if (schedule.length) { %><a class="btn btn--ghost btn--lg" href="#tvarkarastis"><%= t('nav.schedule') %></a><% } %>
     </div>
   </div>
 
@@ -59,7 +64,7 @@
   <div class="marquee__track">
     <% for (let rep = 0; rep < 2; rep++) { %>
       <div class="marquee__group">
-        <% for (let k = 0; k < 3; k++) { marquee.forEach((w) => { %><span><%= w %></span><i>✦</i><% }) } %>
+        <% for (let k = 0; k < 3; k++) { marquee.forEach((w) => { %><span><%= w %></span><i class="marquee__sep"></i><% }) } %>
       </div>
     <% } %>
   </div>
@@ -87,7 +92,7 @@
           <defs><path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
           <text><textPath href="#badge-circle" textLength="486"><%= t('about.badge') %></textPath></text>
         </svg>
-        <svg viewBox="0 0 24 24" class="badge__star"><path d="M12 1.500 14.400 9.600 22.500 12l-8.100 2.400L12 22.500 9.600 14.400 1.500 12l8.100-2.400z"/></svg>
+        <svg viewBox="0 0 24 24" class="badge__star"><rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)"/></svg>
       </div>
       <ol class="pillars">
         <% [1, 2, 3].forEach((n) => { %>
@@ -104,9 +109,9 @@
   </div>
 </section>
 
-<!-- ============================ STILIAI ============================ -->
+<!-- ============================ PASLAUGOS ============================ -->
 <% if (services.length) { %>
-<section class="section services" id="paslaugos">
+<section class="section section--paper services" id="paslaugos">
   <div class="container">
     <header class="section__head" data-reveal>
       <p class="label"><%= t('services.label') %></p>
@@ -117,6 +122,7 @@
       <article class="class-card<%= c.image ? ' class-card--img' : '' %>" data-reveal>
         <% if (c.image) { %><img class="class-card__bg" src="<%= thumb(c.image) %>" alt="" loading="lazy" decoding="async"><% } %>
         <span class="class-card__num" aria-hidden="true"><%= String(i + 1).padStart(2, '0') %></span>
+        <% if (!c.image) { %><span class="class-card__icon" aria-hidden="true"><%- icon(c.icon || 'diamond', 30) %></span><% } %>
         <h3 class="class-card__title"><%= L(c, 'name') %></h3>
         <% if (L(c, 'description')) { %><p class="class-card__text"><%= L(c, 'description') %></p><% } %>
         <ul class="chips">
@@ -127,6 +133,53 @@
       </article>
       <% }) %>
     </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ============================ KAIP DIRBAME ============================ -->
+<section class="section process" id="kaip-dirbame">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <p class="label"><%= t('process.label') %></p>
+      <h2 class="h2"><%= t('process.title') %> <em><%= t('process.titleAccent') %></em></h2>
+    </header>
+    <ol class="steps">
+      <% [1, 2, 3, 4].forEach((n) => { %>
+      <li class="step" data-reveal>
+        <span class="step__num" aria-hidden="true"><span><%= n %></span></span>
+        <h3 class="step__title"><%= t('process.' + n + '.title') %></h3>
+        <p class="step__text"><%= t('process.' + n + '.text') %></p>
+      </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ VIZITINĖS KŪRĖJAS (reklama) ============================ -->
+<% if (has.cardMaker) { %>
+<section class="section card-promo" id="vizitine">
+  <div class="container card-promo__grid">
+    <div class="card-promo__text" data-reveal>
+      <p class="label label--dark"><span class="tag"><%= t('cardPromo.label') %></span></p>
+      <h2 class="h2"><%= t('cardPromo.title') %> <em><%= t('cardPromo.titleAccent') %></em></h2>
+      <p class="card-promo__lead"><%= t('cardPromo.text') %></p>
+      <ul class="card-promo__feats">
+        <% [1, 2, 3].forEach((n) => { %><li><%- icon('check', 18) %> <%= t('cardPromo.f' + n) %></li><% }) %>
+      </ul>
+      <a class="btn btn--dark btn--lg" href="<%= paths.card %>"><%= t('cardPromo.cta') %> <%- icon('arrow', 20) %></a>
+    </div>
+    <a class="card-promo__visual" href="<%= paths.card %>" tabindex="-1" aria-hidden="true" data-reveal>
+      <span class="mini-card mini-card--back">
+        <span class="mini-card__logo"><i></i>Jūsų logo</span>
+      </span>
+      <span class="mini-card mini-card--front">
+        <span class="mini-card__corner"></span>
+        <span class="mini-card__name">Vardenis Pavardenis</span>
+        <span class="mini-card__role">Direktorius</span>
+        <span class="mini-card__lines"><i></i><i></i><i></i></span>
+      </span>
+    </a>
   </div>
 </section>
 <% } %>
@@ -197,7 +250,12 @@
         <div class="trainer__body">
           <h3 class="trainer__name"><%= p.name %></h3>
           <% if (L(p, 'role')) { %><p class="trainer__role"><%= L(p, 'role') %></p><% } %>
-          <% if (L(p, 'bio')) { %><p class="trainer__bio"><%= L(p, 'bio') %></p><% } %>
+          <% if (L(p, 'bio')) { const paras = L(p, 'bio').split(/\r?\n\s*\r?\n/).map((x) => x.trim()).filter(Boolean); %>
+          <div class="trainer__bio" id="bio-<%= p.id %>" data-clamp>
+            <% paras.forEach((para) => { %><p><%= para.replace(/\s*\r?\n\s*/g, ' ') %></p><% }) %>
+          </div>
+          <button class="trainer__more" type="button" data-clamp-btn aria-controls="bio-<%= p.id %>" aria-expanded="false" data-more="<%= t('team.more') %>" data-less="<%= t('team.less') %>" hidden><%= t('team.more') %></button>
+          <% } %>
           <% if (p.instagram) { %>
             <a class="trainer__link" href="<%= p.instagram %>" target="_blank" rel="noopener noreferrer"><%- icon('instagram', 18) %> Instagram</a>
           <% } %>
@@ -205,6 +263,30 @@
       </article>
       <% }) %>
     </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ============================ GALERIJA ============================ -->
+<% if (gallery.length) { %>
+<section class="section section--paper gallery" id="darbai">
+  <div class="container">
+    <header class="section__head section__head--row" data-reveal>
+      <div>
+        <p class="label"><%= t('gallery.label') %></p>
+        <h2 class="h2"><%= t('gallery.title') %> <em><%= t('gallery.titleAccent') %></em></h2>
+      </div>
+      <% if (galleryCount > gallery.length) { %>
+      <a class="link-arrow" href="<%= paths.gallery %>"><%= t('gallery.all') %> (<%= galleryCount %>) <%- icon('arrow', 18) %></a>
+      <% } %>
+    </header>
+    <div class="gallery__grid gallery__grid--home" data-gallery data-rows="2">
+      <% gallery.forEach((g) => { %><%- include('partials/gallery-item', { g }) %><% }) %>
+    </div>
+    <p class="gallery__more" data-gallery-more hidden>
+      <button class="btn btn--ghost" type="button" data-more-btn><%= t('gallery.more') %></button>
+      <% if (galleryCount > gallery.length) { %><a class="btn btn--ghost" href="<%= paths.gallery %>" data-more-all hidden><%= t('gallery.all') %> (<%= galleryCount %>)</a><% } %>
+    </p>
   </div>
 </section>
 <% } %>
@@ -222,7 +304,8 @@
       <article class="price<%= p.highlighted ? ' price--hot' : '' %>" data-reveal>
         <% if (p.highlighted) { %><p class="price__flag"><%= t('prices.popular') %></p><% } %>
         <h3 class="price__name"><%= L(p, 'name') %></h3>
-        <p class="price__amount"><strong><%= p.price %></strong><% if (L(p, 'period')) { %> <span><%= L(p, 'period') %></span><% } %></p>
+        <% const pm = String(p.price).match(/^(nuo|from)\s+(.+)$/i); %>
+        <p class="price__amount"><% if (pm) { %><small><%= t('prices.from') %></small> <% } %><strong><%= pm ? pm[2] : p.price %></strong><% if (L(p, 'period')) { %> <span><%= L(p, 'period') %></span><% } %></p>
         <% const feats = lines(L(p, 'features')); if (feats.length) { %>
         <ul class="price__list">
           <% feats.forEach((f) => { %><li><%- icon('check', 18) %><span><%= f %></span></li><% }) %>
@@ -232,6 +315,7 @@
       </article>
       <% }) %>
     </div>
+    <p class="note" data-reveal><%= t('prices.note') %></p>
   </div>
 </section>
 <% } %>
@@ -277,26 +361,6 @@
 </section>
 <% } %>
 
-<!-- ============================ GALERIJA ============================ -->
-<% if (gallery.length) { %>
-<section class="section gallery" id="galerija">
-  <div class="container">
-    <header class="section__head section__head--row" data-reveal>
-      <div>
-        <p class="label"><%= t('gallery.label') %></p>
-        <h2 class="h2"><%= t('gallery.title') %> <em><%= t('gallery.titleAccent') %></em></h2>
-      </div>
-      <% if (galleryCount > gallery.length) { %>
-      <a class="link-arrow" href="<%= paths.gallery %>"><%= t('gallery.all') %> (<%= galleryCount %>) <%- icon('arrow', 18) %></a>
-      <% } %>
-    </header>
-    <div class="gallery__grid gallery__grid--home" data-gallery>
-      <% gallery.forEach((g) => { %><%- include('partials/gallery-item', { g }) %><% }) %>
-    </div>
-  </div>
-</section>
-<% } %>
-
 <!-- ============================ ATSILIEPIMAI ============================ -->
 <% if (testimonials.length) { %>
 <section class="section testimonials" id="atsiliepimai">
@@ -319,7 +383,7 @@
 
 <!-- ============================ D.U.K. ============================ -->
 <% if (faq.length) { %>
-<section class="section faq" id="duk">
+<section class="section section--paper faq" id="duk">
   <div class="container faq__grid">
     <header class="section__head" data-reveal>
       <p class="label"><%= t('faq.label') %></p>
@@ -346,6 +410,7 @@
       <p class="register__text"><%= t('register.text') %></p>
       <ul class="register__contacts">
         <% if (s.phone) { %><li><a href="tel:<%= s.phone.replace(/[^+\d]/g, '') %>"><%- icon('phone', 20) %> <%= s.phone %></a></li><% } %>
+        <% if (s.phone2) { %><li><a href="tel:<%= s.phone2.replace(/[^+\d]/g, '') %>"><%- icon('mobile', 20) %> <%= s.phone2 %></a></li><% } %>
         <% if (s.email) { %><li><a href="mailto:<%= s.email %>"><%- icon('mail', 20) %> <%= s.email %></a></li><% } %>
       </ul>
     </div>
@@ -416,6 +481,9 @@
         <% } %>
         <% if (s.phone) { %>
         <div><dt><%- icon('phone', 20) %> <%= t('contacts.phone') %></dt><dd><a href="tel:<%= s.phone.replace(/[^+\d]/g, '') %>"><%= s.phone %></a></dd></div>
+        <% } %>
+        <% if (s.phone2) { %>
+        <div><dt><%- icon('mobile', 20) %> <%= t('contacts.phone2') %></dt><dd><a href="tel:<%= s.phone2.replace(/[^+\d]/g, '') %>"><%= s.phone2 %></a></dd></div>
         <% } %>
         <% if (s.email) { %>
         <div><dt><%- icon('mail', 20) %> <%= t('contacts.email') %></dt><dd><a href="mailto:<%= s.email %>"><%= s.email %></a></dd></div>

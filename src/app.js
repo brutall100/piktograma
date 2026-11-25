@@ -52,14 +52,17 @@ function createApp() {
   app.locals.asset = (p) => `${p}?v=${ASSET_VERSION}`;
   app.locals.img = (name) => (name ? `/uploads/${name}` : '');
   app.locals.thumb = (name) => (name ? `/uploads/${thumbName(name)}` : '');
-  // Tekstinis logotipas iš pavadinimo: pirmas žodis – stambiu šriftu, likę – rašytiniu akcento spalva.
+  // Tekstinis logotipas iš pavadinimo: pirmas žodis – stambiu šriftu akcento spalva, likę (arba brand.logoScript) – rašytiniu.
   // Įkėlus logotipą Nustatymuose, šablonai rodo paveikslėlį vietoje šio.
   app.locals.brandLogo = (cls = '', label = '') => {
     const name = String(getSettings().site_name || brand.defaultName).trim();
     const [first, ...rest] = name.split(/\s+/);
     const aria = label ? ` role="img" aria-label="${escapeHtml(label)}"` : '';
-    return `<span class="brand-logo ${cls}"${aria}><span class="brand-logo__a">${escapeHtml(first)}</span>${
-      rest.length ? ` <span class="brand-logo__b">${escapeHtml(rest.join(' '))}</span>` : ''
+    // Vieno žodžio pavadinimui rašytinė eilutė imama iš brand.logoScript (pvz. „reklamos paslaugos“).
+    const script = rest.length ? rest.join(' ') : brand.logoScript || '';
+    const mod = rest.length ? '' : ' brand-logo--sub';
+    return `<span class="brand-logo${mod} ${cls}"${aria}><span class="brand-logo__a">${escapeHtml(first)}</span>${
+      script ? ` <span class="brand-logo__b">${escapeHtml(script)}</span>` : ''
     }</span>`;
   };
   app.locals.brand = brand;

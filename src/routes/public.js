@@ -21,8 +21,8 @@ const dicts = {
 };
 
 const PATHS = {
-  lt: { home: '/', news: '/naujienos', events: '/renginiai', gallery: '/galerija', privacy: '/privatumas', register: '/registracija' },
-  en: { home: '/en', news: '/en/news', events: '/en/events', gallery: '/en/gallery', privacy: '/en/privacy', register: '/en/register' },
+  lt: { home: '/', news: '/naujienos', events: '/renginiai', gallery: '/galerija', privacy: '/privatumas', register: '/registracija', card: '/vizitine-kortele' },
+  en: { home: '/en', news: '/en/news', events: '/en/events', gallery: '/en/gallery', privacy: '/en/privacy', register: '/en/register', card: '/en/business-card' },
 };
 
 const NEWS_PER_PAGE = 12;
@@ -112,6 +112,7 @@ function setLocals(req, res, lang, extra = {}) {
       ),
       news: on('news'),
       events: on('events'),
+      cardMaker: on('cardMaker'),
     },
   });
 }
@@ -146,7 +147,6 @@ function jsonLd(req, s, S) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    additionalType: 'https://schema.org/SportsActivityLocation',
     name: s.site_name || brand.defaultName,
     description: S('seo_description'),
     url: root + '/',
@@ -157,6 +157,7 @@ function jsonLd(req, s, S) {
       addressCountry: 'LT',
     },
     telephone: s.phone || undefined,
+    foundingDate: '1996',
     email: s.email || undefined,
     image: s.logo ? `${root}/uploads/${s.logo}` : `${root}/img/og-image.png`,
     sameAs: ['facebook', 'instagram', 'tiktok', 'youtube'].map((k) => h.safeUrl(s[k])).filter(Boolean),
@@ -182,7 +183,7 @@ function home(lang) {
       testimonials: on('testimonials') ? all('SELECT * FROM testimonials ORDER BY sort, id') : [],
       news: on('news') ? all('SELECT * FROM news WHERE published = 1 ORDER BY published_at DESC, id DESC LIMIT 3') : [],
       events: on('events') ? upcomingEvents(4) : [],
-      gallery: on('gallery') ? await withSizes(all('SELECT * FROM gallery ORDER BY sort, id LIMIT 8')) : [],
+      gallery: on('gallery') ? await withSizes(all('SELECT * FROM gallery ORDER BY sort, id LIMIT 24')) : [],
       galleryCount: get('SELECT COUNT(*) AS n FROM gallery').n,
       formToken: formToken(),
       sent: req.query.sent === '1',
@@ -278,6 +279,19 @@ function gallery(lang) {
     const other = lang === 'lt' ? 'en' : 'lt';
     setLocals(req, res, lang, { title: dicts[lang]['gallery.pageTitle'], alt: PATHS[other].gallery, section: 'gallery' });
     res.render('public/gallery', { items: await withSizes(all('SELECT * FROM gallery ORDER BY sort, id')) });
+  };
+}
+
+function cardMaker(lang) {
+  return (req, res) => {
+    const other = lang === 'lt' ? 'en' : 'lt';
+    setLocals(req, res, lang, {
+      title: dicts[lang]['card.pageTitle'],
+      description: dicts[lang]['card.intro'],
+      alt: PATHS[other].card,
+      section: 'card',
+    });
+    res.render('public/card', { formToken: formToken() });
   };
 }
 
@@ -387,6 +401,7 @@ for (const lang of h.LANGS) {
     router.get(`${p.events}/:slug`, eventItem(lang));
   }
   if (on('gallery')) router.get(p.gallery, wrap(gallery(lang)));
+  if (on('cardMaker')) router.get(p.card, cardMaker(lang));
   router.get(p.privacy, privacy(lang));
   router.post(p.register, registerLimiter, formBody, register(lang));
 }
@@ -410,6 +425,7 @@ router.get('/sitemap.xml', (req, res) => {
       for (const e of all('SELECT * FROM events WHERE published = 1')) urls.push(`${p.events}/${itemSlug(e, lang)}`);
     }
     if (on('gallery')) urls.push(p.gallery);
+    if (on('cardMaker')) urls.push(p.card);
   }
   const xml =
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +

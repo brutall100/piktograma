@@ -4,7 +4,7 @@
 # rinkitės mokamą planą su disku (žr. README).
 services:
   - type: web
-    name: my-site
+    name: piktograma
     runtime: node
     plan: free
     region: frankfurt
