@@ -233,14 +233,5 @@
   "card.orderSubmit": "Siųsti užsakymą",
   "card.close": "Uždaryti",
   "card.service": "Vizitinės kortelės (kūrėjas)",
-  "card.preview": "Kortelės peržiūra",
-  "demo.theme": "Dizainas:",
-  "theme.kortele": "Kortelė",
-  "theme.spaustuve": "Spaustuvė",
-  "hero.facts1": "įkurta",
-  "hero.facts2": "Jonava",
-  "hero.facts3": "vieta viskam",
-  "hero.cardNote": "Jūsų vizitinė – mūsų darbas. 90 × 50 mm, 350 g/m²",
-  "register.sheet": "Užsakymo lapas",
-  "contacts.cardNote": "Iškirpkite ir pasilikite"
+  "card.preview": "Kortelės peržiūra"
 }

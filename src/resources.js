@@ -283,24 +283,6 @@ const settingsGroups = [
     ],
   },
   {
-    key: 'design',
-    title: 'Dizainas',
-    intro: 'Svetainės išvaizda. Abi temos naudoja tą patį turinį – keičiasi tik dizainas.',
-    fields: [
-      {
-        name: 'theme',
-        label: 'Tema',
-        type: 'select',
-        options: [
-          { value: 'kortele', label: 'Kortelė – tamsi, su įstrižainėmis ir rombais' },
-          { value: 'spaustuve', label: 'Spaustuvė – šviesi, su spaudos ženklais' },
-        ],
-        emptyLabel: '— numatytoji (src/brand.js) —',
-        help: 'Peržiūrėti kitą temą nekeičiant nustatymo: pridėkite prie adreso ?tema=spaustuve arba ?tema=kortele.',
-      },
-    ],
-  },
-  {
     key: 'about',
     title: 'Apie mus',
     fields: [

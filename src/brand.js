@@ -32,13 +32,6 @@ module.exports = {
     cardMaker: true, // Vizitinės kortelės kūrėjas (/vizitine-kortele)
   },
 
-  // Dizaino tema (keičiama ir admin → Nustatymai → Dizainas):
-  //   'kortele'   – tamsi, įstrižainės ir rombai kaip vizitinėje kortelėje
-  //   'spaustuve' – šviesi „popieriaus“ tema su spaudos ženklais (kirpimo žymės, CMYK)
-  // Peržiūrai be nustatymų keitimo: ?tema=spaustuve arba ?tema=kortele (įsimenama slapuku).
-  theme: 'kortele',
-  themes: ['kortele', 'spaustuve'],
-
   // Pradinio ekrano efektas, kai neįkeltas fono vaizdo įrašas:
   //   'squares'    – įstrižainė ir rombų kompozicija (kaip Piktogramos vizitinėje)
   //   'spotlights' – judantys prožektorių spinduliai

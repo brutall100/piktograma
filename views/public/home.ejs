@@ -15,9 +15,6 @@
 %>
 
 <!-- ============================ HERO ============================ -->
-<% if (theme === 'spaustuve') { %>
-<%- include('partials/hero-print') %>
-<% } else { %>
 <% const fx = s.hero_video ? 'video' : brand.heroEffect; %>
 <section class="hero<%= fx === 'video' ? ' hero--video' : fx === 'dancers' ? ' hero--dancers' : fx === 'squares' ? ' hero--squares' : '' %>" id="top">
   <div class="hero__bg" aria-hidden="true">
@@ -62,7 +59,6 @@
 
 <a class="hero__scroll" href="#apie"><span class="hero__scroll-line" aria-hidden="true"></span><%= t('hero.scroll') %></a>
 </section>
-<% } %>
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee__track">
@@ -420,7 +416,6 @@
     </div>
 
     <div class="register__panel" data-reveal>
-      <p class="register__sheet" aria-hidden="true"><span><%= t('register.sheet') %></span><span>Nr. <%= String(new Date().getFullYear()).slice(2) %>-<%= String(new Date().getMonth() + 1).padStart(2, '0') %></span></p>
       <div class="form-ok<%= sent ? ' is-visible' : '' %>" data-form-ok role="status" <%= sent ? '' : 'hidden' %>>
         <span class="form-ok__icon" aria-hidden="true"><%- icon('check', 34) %></span>
         <h3><%= t('register.okTitle') %></h3>
