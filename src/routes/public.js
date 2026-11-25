@@ -96,7 +96,7 @@ function setLocals(req, res, lang, extra = {}) {
     paragraphs: h.paragraphs,
     lines: h.lines,
     slug: (row) => itemSlug(row, lang),
-    socials: ['facebook', 'instagram', 'tiktok', 'youtube']
+    socials: ['tiktok', 'youtube']
       .map((k) => ({ key: k, url: h.safeUrl(s[k]) }))
       .filter((x) => x.url),
     year: new Date().getFullYear(),
@@ -160,7 +160,7 @@ function jsonLd(req, s, S) {
     foundingDate: '1996',
     email: s.email || undefined,
     image: s.logo ? `${root}/uploads/${s.logo}` : `${root}/img/og-image.png`,
-    sameAs: ['facebook', 'instagram', 'tiktok', 'youtube'].map((k) => h.safeUrl(s[k])).filter(Boolean),
+    sameAs: ['tiktok', 'youtube'].map((k) => h.safeUrl(s[k])).filter(Boolean),
   };
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }

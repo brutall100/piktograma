@@ -46,6 +46,9 @@ const paths = {
   rollup: '<rect x="6.5" y="2.5" width="11" height="16" rx="0.5"/><path d="M4.5 20.5h15M12 18.5v2M9 7h6M9 10h4"/>',
   sticker: '<path d="M4.5 4.5h15v9l-6 6h-9z"/><path d="M13.5 19.5v-6h6"/>',
   design: '<path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.8 0l.6.6a2 2 0 0 1 0 2.8L8.6 18.8z"/><path d="M13.8 6.8l3.4 3.4"/><rect x="3.2" y="3.2" width="3.5" height="3.5" transform="rotate(45 4.95 4.95)"/>',
+  gift: '<rect x="3.5" y="9" width="17" height="4" rx="0.5"/><path d="M5 13v7.5h14V13M12 9v11.5"/><path d="M12 9c-1.5-3.5-5.5-4-5.5-1.5S10 9 12 9zM12 9c1.5-3.5 5.5-4 5.5-1.5S14 9 12 9z"/>',
+  copy: '<rect x="8" y="3.5" width="12" height="14" rx="1"/><path d="M16 17.5v3H4V7h4"/><path d="M11 8h6M11 11h6M11 14h3"/>',
+  billboard: '<rect x="2.5" y="3.5" width="19" height="11" rx="0.5"/><path d="M8 14.5V21M16 14.5V21M5.5 21h13"/><path d="M6 7.5h7M6 10.5h4"/><rect x="15" y="7" width="3" height="3" transform="rotate(45 16.5 8.5)"/>',
   diamond: '<rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)"/>',
   mobile: '<rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/>',
 };
