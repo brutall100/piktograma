@@ -125,4 +125,4 @@ test/                 npm test
 ```
 
 ---
-Sukūrė [AlditeQ](https://aldas-portfolio.site/).
+Sukūrė [AlditeQ](https://alditeq.lt/).

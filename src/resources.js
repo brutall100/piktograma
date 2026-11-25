@@ -33,6 +33,9 @@ const SERVICE_ICONS = [
   { value: 'sticker', label: 'Lipdukas' },
   { value: 'design', label: 'Dizainas' },
   { value: 'calendar', label: 'Kalendorius' },
+  { value: 'gift', label: 'Dovana / suvenyras' },
+  { value: 'copy', label: 'Kopijavimas' },
+  { value: 'billboard', label: 'Reklamos skydas' },
   { value: 'image', label: 'Paveikslėlis' },
 ];
 
@@ -307,17 +310,6 @@ const settingsGroups = [
       { name: 'email', label: 'El. paštas', type: 'text' },
       { name: 'hours', label: 'Darbo laikas', type: 'textarea', i18n: true, rows: 3 },
       { name: 'map_query', label: 'Žemėlapio paieškos tekstas', type: 'text', help: 'Nebūtina. Pagal nutylėjimą žemėlapis ieško „adresas, miestas“.' },
-    ],
-  },
-  {
-    key: 'social',
-    title: 'Socialiniai tinklai',
-    intro: 'Įklijuokite pilnas nuorodas (https://…). Tuščios nuorodos nerodomos.',
-    fields: [
-      { name: 'facebook', label: 'Facebook', type: 'url' },
-      { name: 'instagram', label: 'Instagram', type: 'url' },
-      { name: 'tiktok', label: 'TikTok', type: 'url' },
-      { name: 'youtube', label: 'YouTube', type: 'url' },
     ],
   },
   {

@@ -8,7 +8,7 @@
 <article class="article">
   <header class="page-head page-head--article">
     <div class="container container--narrow">
-      <nav class="crumbs" aria-label="Breadcrumb">
+      <nav class="crumbs" aria-label="<%= t('nav.breadcrumb') %>">
         <a href="<%= paths.home %>"><%= t('nav.home') %></a><span aria-hidden="true">/</span><a href="<%= listHref %>"><%= listLabel %></a>
       </nav>
       <% if (!isEvent) { %><time class="article__date" datetime="<%= item.published_at %>"><%= fmtDate(item.published_at) %></time><% } %>

@@ -43,5 +43,5 @@ module.exports = {
   floatingIcons: true,
 
   // Kūrėjo nuoroda poraštėje. null – nerodyti.
-  credit: { label: 'AlditeQ', url: 'https://aldas-portfolio.site/' },
+  credit: { label: 'AlditeQ', url: 'https://alditeq.lt/' },
 };

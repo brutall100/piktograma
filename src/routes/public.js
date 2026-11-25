@@ -8,7 +8,11 @@ const { db, getSettings } = require('../db');
 const h = require('../helpers');
 const { notifyInquiry } = require('../mailer');
 const { withSizes } = require('../uploads');
+const { settingsGroups } = require('../resources');
 const brand = require('../brand');
+
+/** Socialinių tinklų nuorodos – laukai iš nustatymų grupės „social“ (Piktogramai grupės nėra – nuorodų nerodome). */
+const SOCIAL_KEYS = ((settingsGroups.find((g) => g.key === 'social') || {}).fields || []).map((f) => f.name);
 
 /** Ar skiltis įjungta (src/brand.js → modules). */
 const on = (key) => (brand.modules || {})[key] !== false;
@@ -96,7 +100,7 @@ function setLocals(req, res, lang, extra = {}) {
     paragraphs: h.paragraphs,
     lines: h.lines,
     slug: (row) => itemSlug(row, lang),
-    socials: ['facebook', 'instagram', 'tiktok', 'youtube']
+    socials: SOCIAL_KEYS
       .map((k) => ({ key: k, url: h.safeUrl(s[k]) }))
       .filter((x) => x.url),
     year: new Date().getFullYear(),
@@ -160,7 +164,7 @@ function jsonLd(req, s, S) {
     foundingDate: '1996',
     email: s.email || undefined,
     image: s.logo ? `${root}/uploads/${s.logo}` : `${root}/img/og-image.png`,
-    sameAs: ['facebook', 'instagram', 'tiktok', 'youtube'].map((k) => h.safeUrl(s[k])).filter(Boolean),
+    sameAs: SOCIAL_KEYS.map((k) => h.safeUrl(s[k])).filter(Boolean),
   };
   return JSON.stringify(data).replace(/</g, '\\u003c');
 }

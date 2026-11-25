@@ -87,7 +87,7 @@ test('viešieji puslapiai veikia LT ir EN kalbomis', async () => {
   assert.match(lt, /\+370 349 61777/);
   assert.match(lt, /\+370 685 58816/, 'antras telefonas rodomas');
   assert.match(lt, /reklamos paslaugos/, 'logotipo rašytinė eilutė');
-  assert.match(lt, /Sukūrė <a href="https:\/\/aldas-portfolio\.site\/"/);
+  assert.match(lt, /Sukūrė <a href="https:\/\/alditeq\.lt\/"/);
   const en = await (await fetch(base + '/en')).text();
   assert.match(en, /<html lang="en">/);
   assert.match(en, /Get a quote/);
