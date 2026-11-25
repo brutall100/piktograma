@@ -1,4 +1,27 @@
-# business-site-node-starter
+# Piktograma – reklamos paslaugos, Jonava
+
+Pristatomoji svetainė **PIKTOGRAMA, UAB** (Kauno g. 4, Jonava; veikia nuo 1996 m.) – vizitinės kortelės,
+spaudos darbai, iškabos, šviesdėžės, lipdukai, reklama ant automobilių ir drabužių.
+Sukurta pagal šabloną [business-site-node-starter](https://github.com/brutall100/business-site-node-starter).
+
+**Kas pritaikyta Piktogramai**
+
+- **Dizainas pagal vizitinę kortelę:** juoda / balta / raudona (`#e53126`), įstrižainės ir rombų motyvas,
+  logotipas „PIKTOGRAMA“ (Quicksand) + rašytinis „reklamos paslaugos“ (Marck Script). Šriftai ~25 % mažesni nei šablone.
+- **Pradinis puslapis:** paslaugos su ikonomis (9), „Kaip dirbame“ (4 žingsniai), vizitinės kūrėjo reklama,
+  darbų galerija (pavyzdinės iliustracijos `seed-assets/`), orientacinės kainos, naujienos ir akcijos, D.U.K., užklausa, kontaktai (2 telefonai).
+- **Vizitinės kortelės kūrėjas** (`/vizitine-kortele`, `/en/business-card`): 6 šablonai, akcento spalva, šriftas,
+  logotipas (lieka naršyklėje), dvipusė kortelė; atsisiuntimas **PDF spaudai** (96 × 56 mm su 3 mm užlaidomis, 600 dpi, TrimBox)
+  ir **PNG**; „Užsakyti spausdinimą“ – užklausa su kortelės duomenimis, kiekiu ir popieriumi patenka į admin „Užklausos“.
+  Kodas: `public/js/card.js`, `views/public/card.ejs`.
+- **Išjungta:** tvarkaraštis, komanda, renginiai (`src/brand.js`). Atsiliepimai rodomi, kai admin panelėje įvedamas bent vienas.
+
+> Kainos, darbo laikas ir darbų pavyzdžiai – **pavyzdiniai** (viršuje rodoma juosta „Svetainės pristatymo versija…“).
+> Ją išjungti: admin → Nustatymai, arba `settings.demo_content`.
+
+---
+
+## Šablonas: business-site-node-starter
 
 Smulkaus verslo svetainės **šablonas** su valdymo panele: kirpyklai, kavinei, studijai, meistrui, klinikai ir pan.
 Klientas pats rašo naujienas, kelia nuotraukas, keičia paslaugas, kainas ir kontaktus – be programuotojo.

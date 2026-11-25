@@ -1,0 +1,199 @@
+<%- include('partials/head') %>
+<%
+  /* Vizitinės kortelės kūrėjas. Piešiama naršyklėje (public/js/card.js), serveris tik priima užsakymą. */
+  const templates = ['diagonal', 'classic', 'minimal', 'dark', 'band', 'center'];
+  const colors = ['#e53126', '#111214', '#1f3a68', '#0f8b8d', '#2e7d4f', '#f08a24', '#6b3fa0', '#b08d3c'];
+  const fonts = ['modern', 'round', 'serif'];
+  const fields = [
+    { k: 'name', type: 'text', ac: 'name', max: 60, ph: t('card.namePh') },
+    { k: 'role', type: 'text', ac: 'organization-title', max: 60, ph: t('card.rolePh') },
+    { k: 'company', type: 'text', ac: 'organization', max: 60, ph: t('card.companyPh') },
+    { k: 'slogan', type: 'text', ac: 'off', max: 70, ph: t('card.sloganPh') },
+    { k: 'phone', type: 'tel', ac: 'tel', max: 30, ph: '+370 600 00000' },
+    { k: 'email', type: 'email', ac: 'email', max: 70, ph: lang === 'lt' ? 'vardas@imone.lt' : 'name@company.com' },
+    { k: 'web', type: 'text', ac: 'url', max: 60, ph: lang === 'lt' ? 'www.imone.lt' : 'www.company.com' },
+    { k: 'address', type: 'text', ac: 'street-address', max: 70, ph: t('card.addressPh') },
+  ];
+  const i18n = {
+    lang,
+    ph: Object.fromEntries(fields.map((f) => [f.k, f.ph])),
+    labels: Object.fromEntries(fields.map((f) => [f.k, t('card.' + f.k)])),
+    templates: Object.fromEntries(templates.map((x) => [x, t('card.t.' + x)])),
+    fonts: Object.fromEntries(fonts.map((x) => [x, t('card.f.' + x)])),
+    papers: { matte: t('card.p.matte'), gloss: t('card.p.gloss'), premium: t('card.p.premium') },
+    order: lang === 'lt'
+      ? { head: 'Vizitinių kortelių užsakymas (kūrėjas svetainėje)', qty: 'Kiekis', paper: 'Popierius', sides: 'Pusės', one: 'vienpusė', two: 'dvipusė', design: 'Dizainas', logo: 'Logotipas', logoYes: 'įkeltas – atsiųs el. paštu', logoNo: 'nėra', note: 'Pastabos' }
+      : { head: 'Business card order (website card maker)', qty: 'Quantity', paper: 'Paper', sides: 'Sides', one: 'single-sided', two: 'double-sided', design: 'Design', logo: 'Logo', logoYes: 'added – will send by email', logoNo: 'none', note: 'Notes' },
+    needName: lang === 'lt' ? 'Įrašykite bent vardą ir pavardę.' : 'Please enter at least your name.',
+    working: lang === 'lt' ? 'Ruošiama…' : 'Preparing…',
+    logoBad: lang === 'lt' ? 'Nepavyko perskaityti paveikslėlio. Bandykite PNG, JPG arba SVG.' : 'Could not read the image. Try PNG, JPG or SVG.',
+  };
+%>
+<section class="card-maker" data-card-maker data-i18n="<%= JSON.stringify(i18n) %>">
+  <div class="container">
+    <header class="card-maker__head">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="<%= paths.home %>"><%= t('nav.home') %></a><span aria-hidden="true">/</span><span><%= t('card.pageTitle') %></span></nav>
+      <p class="label"><%= t('card.label') %></p>
+      <h1 class="h2"><%= t('card.title') %> <em><%= t('card.titleAccent') %></em></h1>
+      <p class="card-maker__intro"><%= t('card.intro') %></p>
+    </header>
+
+    <div class="cm">
+      <form class="cm__form" data-cm-form autocomplete="on" novalidate>
+        <fieldset class="cm__box">
+          <legend class="cm__legend"><span>1</span> <%= t('card.stepData') %></legend>
+          <div class="cm__fields">
+            <% fields.forEach((f) => { %>
+            <label class="field">
+              <span class="field__label"><%= t('card.' + f.k) %></span>
+              <input type="<%= f.type %>" name="<%= f.k %>" maxlength="<%= f.max %>" placeholder="<%= f.ph %>" autocomplete="<%= f.ac %>" data-cm-field>
+            </label>
+            <% }) %>
+          </div>
+          <div class="cm__logo">
+            <span class="field__label"><%= t('card.logo') %></span>
+            <div class="cm__logo-row">
+              <label class="btn btn--ghost btn--sm cm__file">
+                <%- icon('upload', 18) %> <span data-cm-logo-name><%= t('card.logo') %>…</span>
+                <input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" data-cm-logo class="sr-only">
+              </label>
+              <button class="cm__link" type="button" data-cm-logo-remove hidden><%= t('card.logoRemove') %></button>
+            </div>
+            <p class="cm__hint"><%= t('card.logoHint') %></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="cm__box">
+          <legend class="cm__legend"><span>2</span> <%= t('card.stepDesign') %></legend>
+
+          <p class="field__label"><%= t('card.template') %></p>
+          <div class="cm__templates" role="radiogroup" aria-label="<%= t('card.template') %>">
+            <% templates.forEach((x, i) => { %>
+            <label class="cm__tpl">
+              <input type="radio" name="template" value="<%= x %>" <%= i === 0 ? 'checked' : '' %> class="sr-only">
+              <canvas class="cm__thumb" width="216" height="120" data-cm-thumb="<%= x %>" aria-hidden="true"></canvas>
+              <span><%= t('card.t.' + x) %></span>
+            </label>
+            <% }) %>
+          </div>
+
+          <p class="field__label"><%= t('card.color') %></p>
+          <div class="cm__colors" role="radiogroup" aria-label="<%= t('card.color') %>">
+            <% colors.forEach((c, i) => { %>
+            <label class="cm__swatch" style="--c:<%= c %>" title="<%= c %>">
+              <input type="radio" name="color" value="<%= c %>" <%= i === 0 ? 'checked' : '' %> class="sr-only">
+              <span aria-hidden="true"></span><span class="sr-only"><%= c %></span>
+            </label>
+            <% }) %>
+            <label class="cm__swatch cm__swatch--custom" title="<%= t('card.colorCustom') %>">
+              <input type="radio" name="color" value="custom" class="sr-only">
+              <input type="color" value="#e53126" data-cm-custom aria-label="<%= t('card.colorCustom') %>">
+            </label>
+          </div>
+
+          <div class="cm__row">
+            <div>
+              <p class="field__label"><%= t('card.font') %></p>
+              <div class="cm__seg" role="radiogroup" aria-label="<%= t('card.font') %>">
+                <% fonts.forEach((x, i) => { %>
+                <label><input type="radio" name="font" value="<%= x %>" <%= i === 0 ? 'checked' : '' %> class="sr-only"><span class="cm__seg-btn cm__font--<%= x %>"><%= t('card.f.' + x) %></span></label>
+                <% }) %>
+              </div>
+            </div>
+            <label class="check cm__back">
+              <input type="checkbox" name="back" value="1" checked>
+              <span><%= t('card.backOn') %></span>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="cm__preview" aria-label="<%= t('card.preview') %>">
+        <div class="cm__stage">
+          <figure class="cm__side">
+            <canvas class="cm__canvas" data-cm-front role="img" aria-label="<%= t('card.front') %>"></canvas>
+            <figcaption><%= t('card.front') %> · 90 × 50 mm</figcaption>
+          </figure>
+          <figure class="cm__side" data-cm-back-wrap>
+            <canvas class="cm__canvas" data-cm-back role="img" aria-label="<%= t('card.backSide') %>"></canvas>
+            <figcaption><%= t('card.backSide') %></figcaption>
+          </figure>
+        </div>
+        <div class="cm__actions">
+          <button class="btn btn--primary" type="button" data-cm-pdf><%- icon('download', 18) %> <span><%= t('card.dlPdf') %></span></button>
+          <button class="btn btn--ghost" type="button" data-cm-png><%- icon('image', 18) %> <span><%= t('card.dlPng') %></span></button>
+          <button class="btn btn--dark cm__order-btn" type="button" data-cm-order><%= t('card.order') %> <%- icon('arrow', 18) %></button>
+        </div>
+        <p class="cm__msg" data-cm-msg role="alert" hidden></p>
+        <p class="cm__hint"><%= t('card.pdfNote') %> <%= t('card.saved') %> <button class="cm__link" type="button" data-cm-reset><%= t('card.reset') %></button></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<dialog class="cm-order" data-cm-dialog aria-labelledby="cm-order-title">
+  <button class="cm-order__close" type="button" data-cm-close aria-label="<%= t('card.close') %>"><%- icon('close', 24) %></button>
+  <h2 class="h3" id="cm-order-title"><%= t('card.orderTitle') %> <em><%= t('card.orderTitleAccent') %></em></h2>
+  <p class="cm-order__text"><%= t('card.orderText') %></p>
+
+  <div class="form-ok" data-form-ok role="status" hidden>
+    <span class="form-ok__icon" aria-hidden="true"><%- icon('check', 34) %></span>
+    <h3><%= t('register.okTitle') %></h3>
+    <p><%= t('register.okText') %></p>
+  </div>
+
+  <form class="form" action="<%= paths.register %>" method="post" data-register-form data-cm-order-form
+        data-err="<%= t('register.errGeneric') %>" data-sending="<%= t('register.sending') %>">
+    <input type="hidden" name="token" value="<%= formToken %>">
+    <input type="hidden" name="service_name" value="<%= t('card.service') %>">
+    <input type="hidden" name="message" value="" data-cm-message>
+    <div class="hp" aria-hidden="true">
+      <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+    </div>
+    <div class="form__row">
+      <label class="field">
+        <span class="field__label"><%= t('register.name') %> *</span>
+        <input type="text" name="name" required minlength="2" maxlength="120" autocomplete="name" data-cm-sync="name">
+      </label>
+      <label class="field">
+        <span class="field__label"><%= t('register.phone') %> *</span>
+        <input type="tel" name="phone" required maxlength="40" autocomplete="tel" placeholder="+370" data-cm-sync="phone">
+      </label>
+    </div>
+    <div class="form__row">
+      <label class="field">
+        <span class="field__label"><%= t('register.email') %> <small>(<%= t('register.optional') %>)</small></span>
+        <input type="email" name="email" maxlength="160" autocomplete="email" data-cm-sync="email">
+      </label>
+      <div class="form__row form__row--tight">
+        <label class="field">
+          <span class="field__label"><%= t('card.qty') %></span>
+          <select name="qty" data-cm-qty>
+            <% [100, 250, 500, 1000].forEach((q) => { %><option value="<%= q %>"><%= q %></option><% }) %>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field__label"><%= t('card.paper') %></span>
+          <select name="paper" data-cm-paper>
+            <option value="matte"><%= t('card.p.matte') %></option>
+            <option value="gloss"><%= t('card.p.gloss') %></option>
+            <option value="premium"><%= t('card.p.premium') %></option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <label class="field">
+      <span class="field__label"><%= t('register.message') %> <small>(<%= t('register.optional') %>)</small></span>
+      <textarea name="note" rows="2" maxlength="600" placeholder="<%= t('register.messagePh') %>" data-cm-note></textarea>
+    </label>
+    <label class="check">
+      <input type="checkbox" name="consent" value="1" required>
+      <span><%= t('register.consent') %> <a href="<%= paths.privacy %>" target="_blank" rel="noopener"><%= t('register.privacy') %></a>.</span>
+    </label>
+    <p class="form__error" data-form-error role="alert" hidden></p>
+    <button class="btn btn--primary btn--lg form__submit" type="submit"><span data-submit-label><%= t('card.orderSubmit') %></span> <%- icon('arrow', 20) %></button>
+  </form>
+</dialog>
+
+<script src="<%= asset('/js/card.js') %>" defer></script>
+<%- include('partials/foot') %>

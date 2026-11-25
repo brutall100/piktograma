@@ -1,21 +1,22 @@
 /* ==========================================================================
-   Viešos svetainės stiliai
+   Viešos svetainės stiliai (Piktograma)
+   Piktogramos tema – failo pabaigoje („PIKTOGRAMA TEMA“).
    Spalvos keičiamos :root kintamuosiuose žemiau (--accent, --accent-rgb, --bg …).
    ========================================================================== */
 
 /* ---------- Šriftai (laikomi vietoje, be išorinių užklausų) ---------- */
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/unbounded-latin-wght-normal.woff2') format('woff2');
-  font-weight: 200 900;
+  font-family: 'Quicksand';
+  src: url('/fonts/quicksand-latin-wght-normal.woff2') format('woff2');
+  font-weight: 300 700;
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/unbounded-latin-ext-wght-normal.woff2') format('woff2');
-  font-weight: 200 900;
+  font-family: 'Quicksand';
+  src: url('/fonts/quicksand-latin-ext-wght-normal.woff2') format('woff2');
+  font-weight: 300 700;
   font-display: swap;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -37,16 +38,16 @@
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  font-family: 'Kaushan Script';
-  src: url('/fonts/kaushan-script-latin-400-normal.woff2') format('woff2');
+  font-family: 'Marck Script';
+  src: url('/fonts/marck-script-latin-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Kaushan Script';
-  src: url('/fonts/kaushan-script-latin-ext-400-normal.woff2') format('woff2');
+  font-family: 'Marck Script';
+  src: url('/fonts/marck-script-latin-ext-400-normal.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
@@ -55,30 +56,36 @@
 
 /* ---------- Kintamieji ---------- */
 :root {
-  --bg: #07060a;
-  --bg-2: #0e0c12;
-  --bg-3: #17141c;
-  --accent: #ff2e93; /* akcento spalva – keiskite kartu su --accent-rgb */
-  --accent-rgb: 255, 46, 147;
-  --accent-soft: #ff6bb3;
-  --accent-glow: rgba(var(--accent-rgb), 0.55);
+  /* Piktograma: juoda, balta ir raudona – kaip vizitinėje kortelėje */
+  --bg: #0b0b0c;
+  --bg-2: #131315;
+  --bg-3: #1c1c1f;
+  --accent: #e53126; /* akcento spalva – keiskite kartu su --accent-rgb */
+  --accent-rgb: 229, 49, 38;
+  --accent-soft: #ff5f54;
+  --accent-glow: rgba(var(--accent-rgb), 0.45);
   --accent-dim: rgba(var(--accent-rgb), 0.12);
+  --grey: #8d8d90; /* kortelės pilki rombai */
+  --grey-light: #cfcfd1;
+  --paper: #f4f3f0; /* šviesių sekcijų fonas (popierius) */
   --text: #ffffff;
   --muted: rgba(255, 255, 255, 0.68);
   --faint: rgba(255, 255, 255, 0.4);
-  --line: rgba(255, 255, 255, 0.11);
-  --ink: #0a080c; /* tekstas ant akcento spalvos */
+  --line: rgba(255, 255, 255, 0.12);
+  --ink: #0b0b0c; /* tamsus tekstas ant akcento spalvos */
+  --on-accent: #ffffff; /* mygtukų tekstas ant akcento */
 
-  --font-display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
+  --font-display: 'Quicksand', 'Trebuchet MS', system-ui, sans-serif;
   --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-script: 'Kaushan Script', 'Brush Script MT', cursive;
+  --font-script: 'Marck Script', 'Brush Script MT', cursive;
 
   --gutter: clamp(1.15rem, 4vw, 2.5rem);
-  --container: 1260px;
-  --header-h: 76px;
-  --radius: 22px;
+  --container: 1220px;
+  --header-h: 70px;
+  --radius: 6px;
+  --skew: 4vw; /* įstrižų sekcijų kraštų aukštis */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --neon: 0 0 0.08em #fff3, 0 0 0.35em var(--accent-glow), 0 0 1.1em rgba(var(--accent-rgb), 0.38);
+  --neon: none;
 }
 
 /* ---------- Pagrindas ---------- */
@@ -98,7 +105,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: 0.935rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -228,7 +235,7 @@ main,
 /* ---------- Tipografija ---------- */
 .overline,
 .label {
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -265,7 +272,7 @@ main {
 .h2 {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2rem, 5.4vw, 4.3rem);
+  font-size: clamp(1.5rem, 4.05vw, 3.225rem);
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-transform: uppercase;
@@ -286,12 +293,12 @@ main {
   padding-inline: 0.06em 0.12em;
 }
 .h2--xl {
-  font-size: clamp(2.6rem, 7.6vw, 6.2rem);
+  font-size: clamp(1.95rem, 5.7vw, 4.65rem);
 }
 .h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  font-size: clamp(1.056rem, 1.8vw, 1.275rem);
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin-bottom: 1.4rem;
@@ -308,7 +315,7 @@ main {
   overflow-wrap: break-word;
 }
 .prose--lead {
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.924rem, 1.125vw, 1.056rem);
   max-width: 60ch;
 }
 .prose--lead p:first-child {
@@ -324,10 +331,10 @@ main {
   margin-top: 2em;
 }
 .prose h2 {
-  font-size: 1.45rem;
+  font-size: 1.087rem;
 }
 .prose h3 {
-  font-size: 1.15rem;
+  font-size: 1.012rem;
 }
 .prose strong {
   color: var(--text);
@@ -379,7 +386,7 @@ main {
   border: 1.5px solid transparent;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.771rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1.2;
@@ -401,11 +408,11 @@ main {
 }
 .btn--sm {
   padding: 0.7em 1.25em;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
 }
 .btn--lg {
   padding: 1.15em 2em;
-  font-size: 0.9rem;
+  font-size: 0.846rem;
 }
 .btn--primary {
   background: var(--accent);
@@ -441,7 +448,7 @@ main {
   align-items: center;
   gap: 0.55em;
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -476,7 +483,7 @@ main {
   padding: 0.32em 0.9em;
   border: 1px solid currentColor;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   opacity: 0.85;
@@ -494,7 +501,7 @@ main {
 }
 .note {
   margin-top: 2rem;
-  font-size: 0.92rem;
+  font-size: 0.865rem;
 }
 .note::before {
   content: '✦ ';
@@ -505,10 +512,10 @@ main {
 .demo-bar {
   z-index: 3;
   padding: 0.5rem var(--gutter);
-  background: #0e0c12;
+  background: #131315;
   border-bottom: 1px solid rgba(var(--accent-rgb), 0.35);
   color: var(--accent-soft);
-  font-size: 0.8rem;
+  font-size: 0.752rem;
   font-weight: 600;
   text-align: center;
 }
@@ -528,7 +535,7 @@ main {
 }
 .site-header.is-scrolled,
 .is-sub .site-header {
-  background: rgba(7, 6, 10, 0.78);
+  background: rgba(11, 11, 12, 0.78);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
   backdrop-filter: blur(16px) saturate(1.3);
   border-bottom-color: var(--line);
@@ -583,7 +590,7 @@ main {
   transform: rotate(-6deg) translateY(0.12em);
 }
 .logo__brand {
-  font-size: 1.45rem;
+  font-size: 1.087rem;
   white-space: nowrap;
   transition: transform 0.4s var(--ease);
 }
@@ -591,7 +598,7 @@ main {
   transform: scale(1.03) rotate(-1deg);
 }
 .logo--lg .logo__brand {
-  font-size: 2.2rem;
+  font-size: 1.65rem;
 }
 
 .nav__list {
@@ -601,7 +608,7 @@ main {
 }
 .nav__link {
   position: relative;
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -639,7 +646,7 @@ main {
   border: 1.5px solid rgba(255, 255, 255, 0.24);
   border-radius: 999px;
   padding: 3px;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   transition: border-color 0.2s;
@@ -748,7 +755,7 @@ main {
   }
   .nav__link {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 6.4vw, 2.4rem);
+    font-size: clamp(1.125rem, 4.8vw, 1.8rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     padding: 0.18em 0;
@@ -864,13 +871,13 @@ main {
 .hero__street .b {
   stroke: rgba(var(--accent-rgb), 0.42);
   stroke-width: 1.5;
-  fill: rgba(7, 6, 10, 0.7);
+  fill: rgba(11, 11, 12, 0.7);
 }
 .hero__street .w {
   stroke: rgba(var(--accent-rgb), 0.1);
 }
 .hero__street .wl {
-  stroke: rgba(255, 214, 236, 0.3);
+  stroke: rgba(255, 255, 255, 0.3);
   fill: rgba(var(--accent-rgb), 0.14);
 }
 .hero__street .t {
@@ -968,8 +975,8 @@ main {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(7, 6, 10, 0.9) 0%, rgba(7, 6, 10, 0.55) 38%, rgba(7, 6, 10, 0) 66%),
-    linear-gradient(to top, var(--bg) 0%, rgba(7, 6, 10, 0) 22%);
+    linear-gradient(90deg, rgba(11, 11, 12, 0.9) 0%, rgba(11, 11, 12, 0.55) 38%, rgba(11, 11, 12, 0) 66%),
+    linear-gradient(to top, var(--bg) 0%, rgba(11, 11, 12, 0) 22%);
 }
 .hero__inner {
   position: relative;
@@ -1003,7 +1010,7 @@ main {
   width: fit-content;
   max-width: 100%;
   justify-items: start;
-  font-size: clamp(4rem, 12.5vw, 11rem);
+  font-size: clamp(3rem, 9.375vw, 8.25rem);
   line-height: 0.82;
   animation: logoIn 1.1s var(--ease) both;
 }
@@ -1043,7 +1050,7 @@ main {
   margin-top: clamp(1.4rem, 3vw, 2.4rem);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.1rem, 2.5vw, 1.95rem);
+  font-size: clamp(0.968rem, 1.875vw, 1.462rem);
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
@@ -1051,7 +1058,7 @@ main {
   margin-top: 1rem;
   max-width: 46ch;
   color: var(--muted);
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-size: clamp(0.88rem, 0.975vw, 1.012rem);
 }
 .hero__actions {
   display: flex;
@@ -1120,7 +1127,7 @@ main {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1176,8 +1183,8 @@ main {
   }
   .hero__fade {
     background:
-      linear-gradient(to top, var(--bg) 2%, rgba(7, 6, 10, 0.82) 40%, rgba(7, 6, 10, 0.1) 78%),
-      linear-gradient(90deg, rgba(7, 6, 10, 0.5), transparent 70%);
+      linear-gradient(to top, var(--bg) 2%, rgba(11, 11, 12, 0.82) 40%, rgba(11, 11, 12, 0.1) 78%),
+      linear-gradient(90deg, rgba(11, 11, 12, 0.5), transparent 70%);
   }
   .hero__scroll {
     display: none;
@@ -1206,7 +1213,7 @@ main {
 .marquee span {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1rem, 2.1vw, 1.55rem);
+  font-size: clamp(0.88rem, 1.575vw, 1.163rem);
   letter-spacing: -0.01em;
   text-transform: uppercase;
   padding: 0.75em 0;
@@ -1263,7 +1270,7 @@ main {
 .stats dt {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   line-height: 1;
   color: var(--accent);
   text-shadow: var(--neon);
@@ -1271,7 +1278,7 @@ main {
 .stats dd {
   margin-top: 0.5rem;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.865rem;
 }
 .about__side {
   position: relative;
@@ -1324,7 +1331,7 @@ main {
 .pillar__num {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.15;
   color: var(--bg);
   -webkit-text-stroke: 2px var(--accent);
@@ -1333,14 +1340,14 @@ main {
 .pillar__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.012rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   margin-bottom: 0.35rem;
 }
 .pillar__text {
   color: var(--muted);
-  font-size: 0.98rem;
+  font-size: 0.921rem;
 }
 @media (max-width: 900px) {
   .about__grid {
@@ -1411,9 +1418,9 @@ main {
 .class-card__num {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3.4rem, 7vw, 5.6rem);
+  font-size: clamp(2.55rem, 5.25vw, 4.2rem);
   line-height: 0.85;
-  color: #0e0c12;
+  color: #131315;
   -webkit-text-stroke: 3px rgba(var(--accent-rgb), 0.8);
   paint-order: stroke fill;
   transition:
@@ -1437,7 +1444,7 @@ main {
 .class-card__title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.25rem, 2.3vw, 1.8rem);
+  font-size: clamp(1.1rem, 1.725vw, 1.35rem);
   line-height: 1.1;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -1454,7 +1461,7 @@ main {
   margin-top: 0.4rem;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 0.76rem;
+  font-size: 0.714rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1496,7 +1503,7 @@ main {
   padding: 0.6em 1.15em;
   border: 1.5px solid var(--line);
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.771rem;
   font-weight: 700;
   color: var(--muted);
   transition:
@@ -1530,14 +1537,14 @@ main {
   gap: 0.8rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 0.898rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   padding-top: 0.5rem;
 }
 .day__short {
   font-weight: 900;
-  font-size: 2.1rem;
+  font-size: 1.575rem;
   line-height: 1;
   color: var(--bg);
   -webkit-text-stroke: 2px rgba(255, 255, 255, 0.42);
@@ -1573,7 +1580,7 @@ main {
 .slot__time {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 0.898rem;
   color: var(--accent);
   letter-spacing: -0.01em;
 }
@@ -1588,7 +1595,7 @@ main {
 }
 .slot__meta {
   margin-top: 0.25rem;
-  font-size: 0.86rem;
+  font-size: 0.808rem;
   color: var(--muted);
   line-height: 1.45;
 }
@@ -1606,7 +1613,7 @@ main {
     padding-top: 0;
   }
   .day__short {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -1642,7 +1649,7 @@ main {
   place-items: center;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  font-size: clamp(2.625rem, 6vw, 4.125rem);
   letter-spacing: -0.05em;
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 0 40px var(--accent-glow);
@@ -1653,14 +1660,14 @@ main {
 .trainer__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.012rem;
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 .trainer__role {
   margin-top: 0.3rem;
   color: var(--accent);
-  font-size: 0.8rem;
+  font-size: 0.752rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1668,7 +1675,7 @@ main {
 .trainer__bio {
   margin-top: 0.6rem;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.893rem;
   line-height: 1.65;
 }
 .trainer__bio p + p {
@@ -1695,7 +1702,7 @@ main {
   padding: 0.25rem 0;
   color: var(--accent);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.846rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: none;
@@ -1712,7 +1719,7 @@ main {
   align-items: center;
   gap: 0.4em;
   margin-top: 0.7rem;
-  font-size: 0.86rem;
+  font-size: 0.808rem;
   font-weight: 700;
   color: var(--muted);
 }
@@ -1756,7 +1763,7 @@ main {
   border-radius: 999px;
   background: var(--ink);
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1764,14 +1771,14 @@ main {
 .price__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.968rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
 .price__amount strong {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-size: clamp(1.95rem, 3.75vw, 2.7rem);
   line-height: 1;
   letter-spacing: -0.05em;
 }
@@ -1783,7 +1790,7 @@ main {
   display: grid;
   gap: 0.6rem;
   margin-bottom: auto;
-  font-size: 0.97rem;
+  font-size: 0.912rem;
 }
 .price__list li {
   display: flex;
@@ -1831,13 +1838,13 @@ main {
 .event__day {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
+  font-size: clamp(1.65rem, 3.45vw, 2.625rem);
   line-height: 0.9;
   letter-spacing: -0.05em;
 }
 .event__month {
   margin-top: 0.3rem;
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1846,7 +1853,7 @@ main {
 .event__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.1rem, 2.3vw, 1.65rem);
+  font-size: clamp(0.968rem, 1.725vw, 1.237rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -1858,7 +1865,7 @@ main {
 .event__meta {
   margin-top: 0.4rem;
   color: var(--muted);
-  font-size: 0.93rem;
+  font-size: 0.874rem;
 }
 .event__meta::first-letter {
   text-transform: uppercase;
@@ -1942,7 +1949,7 @@ main {
 .news-card__mono {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3rem, 7vw, 4.4rem);
+  font-size: clamp(2.25rem, 5.25vw, 3.3rem);
   letter-spacing: -0.06em;
   color: rgba(255, 255, 255, 0.14);
   transition:
@@ -1957,7 +1964,7 @@ main {
   padding-top: 1.2rem;
 }
 .news-card__date {
-  font-size: 0.76rem;
+  font-size: 0.714rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1967,7 +1974,7 @@ main {
   margin-top: 0.5rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  font-size: clamp(0.924rem, 1.275vw, 0.975rem);
   line-height: 1.22;
   letter-spacing: -0.02em;
   transition: color 0.2s;
@@ -1978,7 +1985,7 @@ main {
 .news-card__text {
   margin-top: 0.6rem;
   color: var(--muted);
-  font-size: 0.96rem;
+  font-size: 0.902rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -1990,7 +1997,7 @@ main {
   gap: 0.45em;
   margin-top: 0.9rem;
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2100,7 +2107,7 @@ main {
     45deg,
     transparent 40%,
     rgba(var(--accent-rgb), 0.3) 46%,
-    rgba(255, 214, 236, 0.6) 50%,
+    rgba(255, 255, 255, 0.6) 50%,
     rgba(var(--accent-rgb), 0.3) 54%,
     transparent 60%
   );
@@ -2125,7 +2132,7 @@ main {
   /* rožinis „stiklo“ kraštas, šviesi viršutinė briauna ir švytėjimas */
   box-shadow:
     inset 0 0 0 1.5px rgba(var(--accent-rgb), 0.75),
-    inset 0 1px 0 rgba(255, 214, 236, 0.6);
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 /* švytėjimas aplink pačią nuotrauką (ne viduje, kad nenukirptų) */
 .gallery-item,
@@ -2183,7 +2190,7 @@ main {
 }
 .lightbox__caption {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.893rem;
   text-align: center;
   min-height: 1.5em;
 }
@@ -2257,18 +2264,18 @@ main {
   left: 1.5rem;
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 4.6rem;
+  font-size: 3.45rem;
   line-height: 1;
   color: var(--accent);
   text-shadow: var(--neon);
 }
 .quote blockquote {
-  font-size: 1.05rem;
+  font-size: 0.924rem;
 }
 .quote figcaption {
   display: grid;
   margin-top: 1.3rem;
-  font-size: 0.9rem;
+  font-size: 0.846rem;
 }
 .quote figcaption strong {
   font-family: var(--font-display);
@@ -2307,7 +2314,7 @@ main {
   cursor: pointer;
   list-style: none;
   font-weight: 800;
-  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+  font-size: clamp(0.898rem, 1.125vw, 1.038rem);
   transition: color 0.2s;
 }
 .faq__item summary::-webkit-details-marker {
@@ -2396,7 +2403,7 @@ main {
 .register__text {
   margin-top: 1.4rem;
   max-width: 38ch;
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  font-size: clamp(0.924rem, 1.125vw, 1.1rem);
   font-weight: 600;
 }
 .register__contacts {
@@ -2404,7 +2411,7 @@ main {
   gap: 0.6rem;
   margin-top: 1.8rem;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 0.968rem;
 }
 .register__contacts a {
   display: inline-flex;
@@ -2442,7 +2449,7 @@ main {
   gap: 0.4rem;
 }
 .field__label {
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2499,7 +2506,7 @@ main {
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  font-size: 0.9rem;
+  font-size: 0.846rem;
   color: var(--muted);
   cursor: pointer;
 }
@@ -2537,7 +2544,7 @@ main {
   border-radius: 12px;
   background: var(--accent-dim);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.893rem;
 }
 .form__submit {
   background: var(--accent);
@@ -2580,7 +2587,7 @@ main {
 .form-ok h3 {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  font-size: clamp(1.056rem, 1.8vw, 1.2rem);
   text-transform: uppercase;
   letter-spacing: -0.02em;
 }
@@ -2626,7 +2633,7 @@ main {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2640,7 +2647,7 @@ main {
 }
 .contact-list dd {
   font-weight: 700;
-  font-size: 1.08rem;
+  font-size: 0.95rem;
   overflow-wrap: anywhere;
 }
 .contact-list dd a:hover {
@@ -2648,7 +2655,7 @@ main {
 }
 .contacts__follow {
   margin-top: 2rem;
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2671,7 +2678,7 @@ main {
   border: 1.5px solid var(--line);
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.88rem;
+  font-size: 0.827rem;
   text-transform: capitalize;
   transition:
     background-color 0.2s,
@@ -2733,12 +2740,12 @@ main {
 .map__addr {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-size: clamp(0.968rem, 1.65vw, 1.125rem);
   text-transform: uppercase;
   letter-spacing: -0.02em;
 }
 .map__note {
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   color: var(--faint);
   max-width: 30ch;
 }
@@ -2769,12 +2776,12 @@ main {
 .site-footer__word span {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.6rem, 11.6vw, 11.6rem);
+  font-size: clamp(1.95rem, 8.7vw, 8.7rem);
   line-height: 0.82;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: #0e0c12;
+  color: #131315;
   -webkit-text-stroke: 2px rgba(var(--accent-rgb), 0.55);
   paint-order: stroke fill;
 }
@@ -2785,7 +2792,7 @@ main {
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
 }
 .site-footer__title {
-  font-size: 0.76rem;
+  font-size: 0.714rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -2829,7 +2836,7 @@ main {
   gap: 0.6rem 2rem;
   padding-block: 1.4rem 2rem;
   border-top: 1px solid var(--line);
-  font-size: 0.86rem;
+  font-size: 0.808rem;
   color: var(--faint);
 }
 .site-footer__bottom a:hover {
@@ -2865,7 +2872,7 @@ main {
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-bottom: 1.2rem;
-  font-size: 0.78rem;
+  font-size: 0.733rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2880,7 +2887,7 @@ main {
 .page-head__title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  font-size: clamp(1.875rem, 6.75vw, 4.875rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
   text-transform: uppercase;
@@ -2888,7 +2895,7 @@ main {
 }
 .page-head__title--article {
   font-weight: 800;
-  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-size: clamp(1.35rem, 3.75vw, 2.55rem);
   line-height: 1.06;
   letter-spacing: -0.035em;
   text-wrap: balance;
@@ -2896,7 +2903,7 @@ main {
 .article__date {
   display: block;
   margin-bottom: 0.8rem;
-  font-size: 0.8rem;
+  font-size: 0.752rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2904,12 +2911,12 @@ main {
 }
 .article__lead {
   margin-top: 1.3rem;
-  font-size: clamp(1.08rem, 1.7vw, 1.3rem);
+  font-size: clamp(0.95rem, 1.275vw, 0.975rem);
   color: var(--muted);
 }
 .article__body {
   padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 8vw, 6rem);
-  font-size: 1.1rem;
+  font-size: 0.968rem;
 }
 .article__image {
   display: block;
@@ -2943,7 +2950,7 @@ main {
   align-items: center;
   gap: 0.5rem;
   min-width: 6.5rem;
-  font-size: 0.76rem;
+  font-size: 0.714rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -2951,7 +2958,7 @@ main {
 }
 .event-facts dd {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.968rem;
 }
 
 .message {
@@ -2964,7 +2971,7 @@ main {
 .message__code {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3.5rem, 20vw, 13rem);
+  font-size: clamp(2.625rem, 15vw, 9.75rem);
   line-height: 0.9;
   letter-spacing: -0.06em;
   text-transform: uppercase;
@@ -2978,7 +2985,7 @@ main {
   margin: 1.6rem auto 2.2rem;
   max-width: 44ch;
   color: var(--muted);
-  font-size: 1.15rem;
+  font-size: 1.012rem;
 }
 
 /* ---------- Atsiradimo animacijos ---------- */
@@ -3027,5 +3034,1272 @@ main {
   body {
     background: #fff;
     color: #000;
+  }
+}
+
+/* ==========================================================================
+   PIKTOGRAMA TEMA
+   Juoda / balta / raudona, rombų motyvas ir įstrižainės – pagal vizitinę kortelę.
+   Šis sluoksnis perrašo šablono stilius (palengvina būsimus šablono atnaujinimus).
+   ========================================================================== */
+
+/* ---------- Tipografija ---------- */
+.h2,
+.h3,
+.hero__tagline,
+.class-card__title,
+.price__name,
+.pillar__title,
+.marquee span,
+.btn,
+.link-arrow {
+  letter-spacing: 0;
+}
+.h2 {
+  font-weight: 700;
+  line-height: 1.08;
+}
+.h2 em,
+.hero__logo .brand-logo__b,
+.brand-logo__b {
+  transform: rotate(-3deg) translateY(0.04em);
+}
+.h2 em {
+  font-size: 1.18em;
+}
+.label {
+  letter-spacing: 0.2em;
+}
+.label::after {
+  display: block;
+  width: 0.62em;
+  height: 0.62em;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+.label--dark {
+  color: var(--ink);
+}
+
+/* ---------- Mygtukai: tiesūs, kaip spaudinio kraštai ---------- */
+.btn {
+  border-radius: 3px;
+  font-weight: 700;
+}
+.btn--primary {
+  color: var(--on-accent);
+}
+.btn--primary:hover {
+  box-shadow: 0 10px 24px -10px rgba(var(--accent-rgb), 0.9);
+}
+.btn--ghost {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.btn--ghost:hover {
+  box-shadow: none;
+}
+.chips li,
+.lang,
+.lang span,
+.burger,
+.price__flag,
+.pager__link {
+  border-radius: 3px;
+}
+
+/* ---------- Logotipas: PIKTOGRAMA + „reklamos paslaugos“ ---------- */
+.brand-logo__a {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+}
+.brand-logo__b {
+  color: #fff;
+  text-shadow: none;
+}
+.brand-logo--sub {
+  display: inline-grid;
+  justify-items: end;
+}
+.brand-logo--sub .brand-logo__b {
+  margin: -0.12em 0 0;
+  font-size: 0.56em;
+  white-space: nowrap;
+}
+.logo__brand {
+  font-size: 1.4rem;
+}
+.logo--lg .logo__brand {
+  font-size: 2rem;
+}
+.hero__logo {
+  font-size: clamp(2.9rem, 9vw, 7.4rem);
+  line-height: 0.95;
+}
+.hero__logo.brand-logo--sub .brand-logo__b {
+  margin: -0.26em -0.05em 0 0;
+  font-size: 0.46em;
+  animation: none;
+}
+
+/* ---------- Antraštė ---------- */
+.site-header.is-scrolled,
+.is-sub .site-header {
+  background: rgba(11, 11, 12, 0.86);
+}
+.nav__link::after {
+  box-shadow: none;
+}
+.nav__link--hot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: #fff;
+}
+.nav__diamond {
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ---------- Hero: įstrižainė + rombai ---------- */
+.hero--squares .hero__bg {
+  background: radial-gradient(60% 55% at 18% 40%, rgba(255, 255, 255, 0.04), transparent 70%);
+}
+.hero__paper {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  /* kaip kortelėje: juoda kairėje viršuje, balta dešinėje apačioje */
+  clip-path: polygon(100% 24%, 100% 100%, 52% 100%);
+}
+.hero__squares {
+  position: absolute;
+  right: max(-2vw, calc((100vw - var(--container)) / 2 - 6vw));
+  bottom: 4%;
+  width: min(52vw, 720px);
+  aspect-ratio: 640 / 620;
+}
+.squares {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sq {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    sqIn 0.9s calc(0.15s + var(--d) * 0.07s) var(--ease) both,
+    sqFloat 7s calc(var(--d) * -0.9s) ease-in-out infinite;
+}
+.sq--a rect {
+  fill: var(--accent);
+}
+.sq--g rect {
+  fill: var(--grey);
+}
+.sq--l rect {
+  fill: var(--grey-light);
+}
+.sq--s rect {
+  fill: #bdbdbf;
+}
+.sq--sw rect {
+  fill: #fff;
+}
+.sq--o rect,
+.sq--og rect {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 6;
+}
+.sq--og rect {
+  fill: rgba(141, 141, 144, 0.65);
+}
+@keyframes sqIn {
+  from {
+    opacity: 0;
+    transform: translate(-14px, 14px) scale(0.85);
+  }
+}
+@keyframes sqFloat {
+  50% {
+    translate: 0 -6px;
+  }
+}
+.hero--squares .hero__fade {
+  display: none;
+}
+.hero--squares .hero__inner {
+  z-index: 1;
+}
+.hero--squares .hero__text {
+  max-width: 40ch;
+}
+.hero--squares .hero__overline .dot {
+  border-radius: 0;
+  transform: rotate(45deg);
+  box-shadow: none;
+  animation: none;
+}
+.hero--squares .hero__scroll {
+  color: var(--ink);
+}
+@media (max-width: 1100px) {
+  .hero__squares {
+    width: min(50vw, 520px);
+    right: -4vw;
+  }
+}
+@media (max-width: 860px) {
+  .hero--squares {
+    padding-top: calc(var(--header-h) + 2.6rem + clamp(190px, 36svh, 330px));
+  }
+  .hero__paper {
+    clip-path: polygon(100% calc(var(--header-h) + 1.8rem), 100% calc(var(--header-h) + 2.6rem + clamp(190px, 36svh, 330px)), 30% calc(var(--header-h) + 2.6rem + clamp(190px, 36svh, 330px)));
+  }
+  .hero__squares {
+    top: calc(var(--header-h) + 2.6rem);
+    bottom: auto;
+    right: -6vw;
+    width: auto;
+    height: clamp(190px, 36svh, 330px);
+  }
+  .hero--squares .hero__fade {
+    background: none;
+  }
+}
+
+/* ---------- Bėganti juosta ---------- */
+.marquee {
+  transform: rotate(-1.2deg) scaleX(1.04);
+  box-shadow: none;
+}
+.marquee span {
+  font-weight: 700;
+}
+.marquee__sep {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0 1.6em;
+  padding: 0 !important;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+/* ---------- Apie ---------- */
+.stats dt {
+  font-weight: 700;
+}
+.badge__ring text {
+  fill: #fff;
+}
+.badge__star {
+  filter: none;
+  width: 38px;
+  height: 38px;
+}
+.pillar__num {
+  font-weight: 700;
+  -webkit-text-stroke-width: 1.5px;
+}
+
+/* ---------- Šviesios („popieriaus“) sekcijos su įstrižu viršumi ---------- */
+.section--paper {
+  --bg: var(--paper);
+  --bg-2: #ffffff;
+  --bg-3: #e9e8e4;
+  --text: #121213;
+  --muted: rgba(18, 18, 19, 0.7);
+  --faint: rgba(18, 18, 19, 0.45);
+  --line: rgba(18, 18, 19, 0.13);
+  z-index: 1;
+  background: var(--bg);
+  color: var(--text);
+  clip-path: polygon(0 var(--skew), 100% 0, 100% 100%, 0 100%);
+  padding-top: calc(clamp(3.6rem, 7.5vw, 6.2rem) + var(--skew));
+  margin-top: calc(-1 * var(--skew) + 1px);
+}
+.section--paper .btn--ghost {
+  border-color: rgba(18, 18, 19, 0.35);
+  color: var(--text);
+}
+.section--paper .btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.section--paper .link-arrow {
+  color: var(--text);
+}
+
+/* ---------- Paslaugos ---------- */
+.classes__grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+.class-card {
+  min-height: 0;
+  gap: 0.8rem;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border-radius: var(--radius);
+  background: #fff;
+  border-color: rgba(18, 18, 19, 0.1);
+  box-shadow: 0 1px 0 rgba(18, 18, 19, 0.04);
+}
+.class-card::before {
+  clip-path: polygon(0 100%, 0 100%, 0 100%);
+  transition: clip-path 0.55s var(--ease);
+}
+.class-card:hover::before,
+.class-card:focus-within::before {
+  clip-path: polygon(0 -60%, 160% 100%, 0 100%);
+}
+.class-card:hover,
+.class-card:focus-within {
+  color: #fff;
+}
+.class-card__num {
+  position: absolute;
+  top: clamp(1.2rem, 2.2vw, 1.8rem);
+  right: clamp(1.4rem, 2.4vw, 2rem);
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--faint);
+  -webkit-text-stroke: 0;
+  letter-spacing: 0.1em;
+}
+.class-card:hover .class-card__num,
+.class-card:focus-within .class-card__num {
+  color: rgba(255, 255, 255, 0.75);
+}
+.class-card__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 0.4rem;
+  color: var(--accent);
+  transition: color 0.35s;
+}
+.class-card__icon::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.35;
+  transition: transform 0.6s var(--ease);
+}
+.class-card:hover .class-card__icon,
+.class-card:focus-within .class-card__icon {
+  color: #fff;
+}
+.class-card:hover .class-card__icon::before {
+  transform: rotate(135deg);
+}
+.class-card__title {
+  margin-top: 0;
+  font-weight: 700;
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.2;
+}
+.class-card__text {
+  font-size: 0.9rem;
+  margin-bottom: auto;
+}
+.class-card .chips li {
+  font-size: 0.72rem;
+  padding: 0.25em 0.7em;
+}
+.class-card__cta {
+  color: var(--accent);
+}
+.class-card:hover .class-card__cta,
+.class-card:focus-within .class-card__cta {
+  color: #fff;
+}
+.class-card--img .class-card__num {
+  color: #fff;
+}
+@media (max-width: 720px) {
+  .classes__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Kaip dirbame ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  counter-reset: step;
+}
+.step {
+  position: relative;
+  padding-top: 0.4rem;
+}
+.step::before {
+  /* jungianti linija tarp žingsnių */
+  content: '';
+  position: absolute;
+  top: 2.15rem;
+  left: 4.6rem;
+  right: -1rem;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px);
+}
+.step:last-child::before {
+  display: none;
+}
+.step__num {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0.4rem 0 1.4rem 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+}
+.step__num::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.step:nth-child(2) .step__num::before {
+  background: var(--grey);
+}
+.step:nth-child(3) .step__num::before {
+  background: none;
+  border: 2px solid #fff;
+}
+.step:nth-child(4) .step__num::before {
+  background: var(--grey-light);
+}
+.step:nth-child(4) .step__num {
+  color: var(--ink);
+}
+.step__num span {
+  position: relative;
+}
+.step__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.step__text {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+@media (max-width: 900px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2.2rem;
+  }
+  .step:nth-child(2)::before {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.3rem;
+  }
+  .step::before {
+    display: none;
+  }
+  .step__num {
+    grid-row: span 2;
+    margin: 0.5rem 0 0 0.75rem;
+  }
+}
+
+/* ---------- Vizitinės kūrėjo reklama ---------- */
+.card-promo {
+  background: var(--accent);
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+.card-promo::before {
+  /* juodas kampas – kaip kortelės įstrižainė */
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--bg);
+  clip-path: polygon(62% 0, 100% 0, 100% 100%, 40% 100%);
+}
+.card-promo__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.card-promo .h2 em {
+  color: #fff;
+}
+.tag {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  background: var(--ink);
+  color: #fff;
+  letter-spacing: 0.16em;
+}
+.card-promo__lead {
+  margin-top: 1.2rem;
+  max-width: 46ch;
+  font-weight: 500;
+}
+.card-promo__feats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  margin: 1.4rem 0 1.8rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.card-promo__feats li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.card-promo__visual {
+  position: relative;
+  display: block;
+  aspect-ratio: 1.25;
+  perspective: 1200px;
+}
+.mini-card {
+  position: absolute;
+  width: 72%;
+  aspect-ratio: 90 / 50;
+  border-radius: 3px;
+  box-shadow: 0 30px 50px -22px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  transition: transform 0.6s var(--ease);
+}
+.mini-card--back {
+  top: 8%;
+  right: 2%;
+  background: #1f1f22;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transform: rotate(8deg);
+  display: grid;
+  place-items: center;
+}
+.mini-card--front {
+  left: 2%;
+  bottom: 10%;
+  background: #fff;
+  color: var(--ink);
+  transform: rotate(-6deg);
+  padding: 7% 8%;
+  display: flex;
+  flex-direction: column;
+}
+.card-promo__visual:hover .mini-card--front {
+  transform: rotate(-3deg) translateY(-8px);
+}
+.card-promo__visual:hover .mini-card--back {
+  transform: rotate(11deg) translateX(6px);
+}
+.mini-card__corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 46%;
+  height: 100%;
+  background: var(--ink);
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 100% 100%);
+}
+.mini-card__corner::after {
+  content: '';
+  position: absolute;
+  top: 26%;
+  right: 16%;
+  width: 18%;
+  aspect-ratio: 1;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.mini-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.6vw, 1.25rem);
+  line-height: 1.1;
+}
+.mini-card__role {
+  margin-top: 0.2em;
+  font-size: clamp(0.6rem, 1vw, 0.78rem);
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.mini-card__lines {
+  margin-top: auto;
+  display: grid;
+  gap: 6%;
+  width: 46%;
+}
+.mini-card__lines i {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(11, 11, 12, 0.22);
+}
+.mini-card__lines i:nth-child(2) {
+  width: 80%;
+}
+.mini-card__lines i:nth-child(3) {
+  width: 64%;
+}
+.mini-card__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.5vw, 1.15rem);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.mini-card__logo i {
+  width: 1.1em;
+  height: 1.1em;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+@media (max-width: 860px) {
+  .card-promo__grid {
+    grid-template-columns: 1fr;
+  }
+  .card-promo::before {
+    clip-path: polygon(100% 52%, 100% 100%, 0 100%, 0 78%);
+  }
+  .card-promo__visual {
+    max-width: 460px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+/* ---------- Galerija ---------- */
+.gallery-item {
+  border-radius: var(--radius);
+}
+
+/* ---------- Kainos ---------- */
+.price {
+  border-radius: var(--radius);
+}
+.price--hot {
+  color: #fff;
+  box-shadow: 0 24px 50px -24px rgba(var(--accent-rgb), 0.8);
+}
+.price--hot .price__list .ico {
+  color: #fff;
+}
+.price--hot .price__flag {
+  background: var(--ink);
+}
+.price__amount small {
+  font-weight: 700;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+.price__amount strong {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.price__name {
+  font-weight: 700;
+}
+.prices .note {
+  max-width: 70ch;
+}
+.note::before {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.6em;
+  background: var(--accent);
+  transform: rotate(45deg) translateY(-0.1em);
+}
+.prose ul li::before {
+  content: '';
+  width: 0.45em;
+  height: 0.45em;
+  background: var(--accent);
+  transform: rotate(45deg);
+  top: 0.6em;
+}
+
+/* ---------- Naujienos, atsiliepimai ---------- */
+.news-card__media,
+.quote {
+  border-radius: var(--radius);
+}
+.quote::before {
+  font-weight: 700;
+}
+
+/* ---------- D.U.K. ---------- */
+.faq__item summary {
+  font-weight: 700;
+}
+.faq__item summary i {
+  border-radius: 2px;
+  transform: rotate(45deg) scale(0.86);
+}
+.faq__item summary i::before,
+.faq__item summary i::after {
+  rotate: -45deg;
+}
+.faq__item[open] summary i {
+  transform: rotate(225deg) scale(0.86);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---------- Užklausa ---------- */
+.register::before {
+  /* vietoj apskritimų – rombų tinklelis */
+  left: auto;
+  right: -10vmax;
+  bottom: -20vmax;
+  border-radius: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 46px, rgba(11, 11, 12, 0.08) 46px 48px), repeating-linear-gradient(-45deg, transparent 0 46px, rgba(11, 11, 12, 0.08) 46px 48px);
+  animation: none;
+}
+.register .label--dark,
+.register__text {
+  color: var(--ink);
+}
+.register__panel {
+  border-radius: var(--radius);
+}
+.register__text {
+  margin-top: 2rem;
+}
+.register .btn--dark:hover {
+  box-shadow: 0 12px 26px -12px rgba(0, 0, 0, 0.8);
+}
+.field input,
+.field select,
+.field textarea {
+  border-radius: 3px;
+}
+
+/* ---------- Kontaktai, poraštė ---------- */
+.map__frame {
+  border-radius: var(--radius);
+}
+.site-footer__word span {
+  -webkit-text-stroke-color: rgba(var(--accent-rgb), 0.35);
+}
+.demo-bar {
+  background: #151517;
+  border-bottom-color: rgba(var(--accent-rgb), 0.4);
+  color: #ff8b83;
+}
+
+/* ==========================================================================
+   VIZITINĖS KORTELĖS KŪRĖJAS (/vizitine-kortele)
+   ========================================================================== */
+.card-maker {
+  position: relative;
+  padding: calc(var(--header-h) + clamp(1.8rem, 5vw, 3.4rem)) 0 clamp(3.5rem, 8vw, 6rem);
+}
+.card-maker::before {
+  /* įstrižas šviesus kampas fone */
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: min(70vh, 640px);
+  background: linear-gradient(160deg, rgba(var(--accent-rgb), 0.14), transparent 55%);
+}
+.card-maker__head {
+  max-width: 760px;
+  margin-bottom: clamp(1.8rem, 4vw, 2.8rem);
+}
+.card-maker__head .crumbs {
+  margin-bottom: 1.4rem;
+}
+.card-maker__intro {
+  margin-top: 1rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+.cm {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.cm__form {
+  display: grid;
+  gap: 1.2rem;
+}
+.cm__box {
+  margin: 0;
+  min-width: 0;
+  padding: clamp(1.1rem, 2.4vw, 1.6rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
+.cm__legend {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cm__legend span {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  font-size: 0.8rem;
+  color: #fff;
+  background: var(--accent);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.cm__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 0.9rem;
+  margin-top: 0.6rem;
+}
+.cm .field input,
+.cm-order .field input,
+.cm-order .field select,
+.cm-order .field textarea {
+  padding: 0.68rem 0.85rem;
+}
+.cm .field__label,
+.cm__box > .field__label {
+  font-size: 0.7rem;
+}
+.cm__box > .field__label {
+  display: block;
+  margin: 1.1rem 0 0.6rem;
+}
+.cm__box > .field__label:first-of-type {
+  margin-top: 0.6rem;
+}
+.cm__logo {
+  margin-top: 1.1rem;
+}
+.cm__logo-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.cm__file {
+  cursor: pointer;
+  max-width: 100%;
+  overflow: hidden;
+}
+.cm__file span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 22ch;
+}
+.cm__file:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.cm__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.cm__hint {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--faint);
+}
+.cm__templates {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+.cm__tpl {
+  display: grid;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: center;
+}
+.cm__thumb {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 90 / 50;
+  border-radius: 2px;
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.8);
+  transition:
+    outline-color 0.2s,
+    transform 0.25s var(--ease);
+}
+.cm__tpl:hover .cm__thumb {
+  transform: translateY(-2px);
+}
+.cm__tpl input:checked ~ .cm__thumb {
+  outline-color: var(--accent);
+}
+.cm__tpl input:checked ~ span {
+  color: var(--text);
+}
+.cm__tpl input:focus-visible ~ .cm__thumb {
+  outline-color: #fff;
+}
+.cm__colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  padding-left: 0.3rem;
+}
+.cm__swatch {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.cm__swatch > span:first-of-type,
+.cm__swatch--custom input[type='color'] {
+  position: absolute;
+  inset: 4px;
+  background: var(--c);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  transform: rotate(45deg);
+  transition: transform 0.25s var(--ease);
+}
+.cm__swatch input:checked + span {
+  border-color: #fff;
+  transform: rotate(45deg) scale(1.18);
+  box-shadow: 0 0 0 3px var(--bg-2), 0 0 0 5px rgba(255, 255, 255, 0.6);
+}
+.cm__swatch input:focus-visible + span {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.cm__swatch--custom input[type='color'] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  cursor: pointer;
+  background: conic-gradient(#e53126, #f0d024, #2e9d5f, #1f6fd0, #8a3fd0, #e53126);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cm__swatch--custom input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.cm__swatch--custom input[type='color']::-webkit-color-swatch {
+  border: 0;
+  opacity: 0;
+}
+.cm__swatch--custom input[type='color']::-moz-color-swatch {
+  border: 0;
+  opacity: 0;
+}
+.cm__swatch--custom input[type='radio']:checked ~ input[type='color'] {
+  background: var(--c);
+  border-color: #fff;
+  transform: rotate(45deg) scale(1.18);
+}
+.cm__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin-top: 1.1rem;
+}
+.cm__row .field__label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 0.7rem;
+}
+.cm__seg {
+  display: inline-flex;
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  padding: 3px;
+  gap: 3px;
+}
+.cm__seg label {
+  cursor: pointer;
+}
+.cm__seg-btn {
+  display: block;
+  padding: 0.45em 0.95em;
+  border-radius: 2px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.cm__seg input:checked + .cm__seg-btn {
+  background: var(--accent);
+  color: #fff;
+}
+.cm__seg input:focus-visible + .cm__seg-btn {
+  outline: 2px solid #fff;
+}
+.cm__font--modern {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+}
+.cm__font--round {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+.cm__font--serif {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+}
+.cm__back {
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+/* Peržiūra */
+.cm__preview {
+  position: sticky;
+  top: calc(var(--header-h) + 1.2rem);
+  display: grid;
+  gap: 1rem;
+}
+.cm__stage {
+  position: relative;
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+  padding: clamp(1.4rem, 4vw, 2.6rem);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(120% 90% at 20% 0%, #ffffff, transparent 60%),
+    var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+.cm__stage::before {
+  /* tamsus įstrižas kampas kaip Piktogramos kortelėje */
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: #e8e7e3;
+  clip-path: polygon(70% 0, 100% 0, 100% 40%);
+}
+.cm__side {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+}
+.cm__side[hidden] {
+  display: none;
+}
+.cm__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 90 / 50;
+  border-radius: 2px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 22px 40px -22px rgba(0, 0, 0, 0.55);
+}
+.cm__side figcaption {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(18, 18, 19, 0.5);
+}
+.cm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+.cm__actions .btn {
+  flex: 1 1 auto;
+}
+.cm__actions .btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.cm__order-btn {
+  flex-basis: 100% !important;
+  background: #fff;
+  color: var(--ink);
+}
+.cm__order-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.cm__msg {
+  padding: 0.7rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(var(--accent-rgb), 0.12);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.cm__msg[hidden] {
+  display: none;
+}
+@media (max-width: 960px) {
+  .cm {
+    grid-template-columns: 1fr;
+  }
+  /* telefone kortelės peržiūra prilimpa viršuje, kad matytųsi pildant laukus;
+     mygtukai – po forma */
+  .cm__preview {
+    display: contents;
+  }
+  .cm__stage {
+    order: -1;
+    position: sticky;
+    top: calc(var(--header-h) + 0.5rem);
+    z-index: 5;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.9rem;
+    gap: 0.8rem;
+    box-shadow: 0 18px 30px -18px rgba(0, 0, 0, 0.9);
+  }
+  .cm__actions,
+  .cm__msg,
+  .cm__preview > .cm__hint {
+    order: 2;
+  }
+  .cm__msg {
+    order: 1;
+  }
+  .cm__stage:has(.cm__side[hidden]) {
+    grid-template-columns: minmax(0, 0.7fr);
+    justify-content: center;
+  }
+}
+@media (max-width: 560px) {
+  .cm__fields {
+    grid-template-columns: 1fr;
+  }
+  .cm__templates {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cm__side figcaption {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* Užsakymo langas */
+.cm-order {
+  width: min(640px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  color: var(--text);
+  overflow-y: auto;
+}
+.cm-order::backdrop {
+  background: rgba(5, 5, 6, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.cm-order .h3 {
+  margin-bottom: 0.6rem;
+  padding-right: 2.5rem;
+}
+.cm-order .h3 em {
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--accent);
+  font-size: 1.25em;
+}
+.cm-order__text {
+  margin-bottom: 1.3rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.cm-order__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+.cm-order__close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.cm-order .form {
+  display: grid;
+  gap: 1rem;
+}
+.form__row--tight {
+  gap: 0.7rem;
+}
+.cm-order .form-ok:not([hidden]) {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+@media (max-width: 560px) {
+  .cm-order .form__row {
+    grid-template-columns: 1fr;
+  }
+  .cm-order .form__row--tight {
+    grid-template-columns: 1fr 1fr;
   }
 }

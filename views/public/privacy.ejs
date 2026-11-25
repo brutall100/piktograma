@@ -12,6 +12,11 @@
     <h2>Kam duomenis naudojame</h2>
     <p>Duomenis naudojame tik tam, kad galėtume su jumis atsakyti į jūsų užklausą ir susisiekti dėl jūsų pageidaujamų paslaugų. Duomenų tvarkymo pagrindas – jūsų sutikimas ir veiksmai, atliekami jūsų prašymu prieš sudarant sutartį.</p>
 
+    <% if (has.cardMaker) { %>
+    <h2>Vizitinės kortelės kūrėjas</h2>
+    <p>Kortelė kuriama jūsų naršyklėje: įvesti duomenys ir įkeltas logotipas į mūsų serverį nesiunčiami ir išsaugomi tik jūsų naršyklėje (kad grįžę rastumėte kortelę). Juos ištrinti galite mygtuku „Išvalyti“. Paspaudus „Užsakyti spausdinimą“ mums perduodami tik kortelės tekstai, pasirinktas dizainas ir jūsų kontaktai – kaip ir užklausos formoje.</p>
+    <% } %>
+
     <h2>Kiek laiko saugome</h2>
     <p>Užklausų duomenis saugome tol, kol jie reikalingi atsakyti ir suteikti paslaugą, bet ne ilgiau kaip 12 mėnesių nuo paskutinio kontakto, nebent tapote mūsų klientu.</p>
 
@@ -34,6 +39,11 @@
 
     <h2>What we use it for</h2>
     <p>We use the data only to reply to your enquiry and contact you about the services you are interested in. The legal basis is your consent and steps taken at your request before entering into a contract.</p>
+
+    <% if (has.cardMaker) { %>
+    <h2>Business card maker</h2>
+    <p>The card is created in your browser: the details you enter and the logo you add are not sent to our server and are saved only in your browser (so you find your card when you come back). You can delete them with the “Clear” button. When you tap “Order printing”, we receive only the card texts, the chosen design and your contact details – just like with the enquiry form.</p>
+    <% } %>
 
     <h2>How long we keep it</h2>
     <p>We keep enquiry data for as long as it is needed to reply and provide the service, but no longer than 12 months after the last contact, unless you have become our client.</p>

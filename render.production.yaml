@@ -3,7 +3,7 @@
 # (render.yaml lieka nemokamai bandomajai versijai).
 services:
   - type: web
-    name: my-site-prod
+    name: piktograma
     runtime: node
     plan: starter            # 7 $/mėn. (0,5 CPU, 512 MB RAM)
     region: frankfurt

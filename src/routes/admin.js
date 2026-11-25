@@ -614,7 +614,7 @@ router.get('/inquiries.csv', (req, res) => {
     if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
     return `"${s.replace(/"/g, '""')}"`;
   };
-  const head = ['Data', 'Vardas', 'Telefonas', 'El. paštas', 'Amžius', 'Stilius', 'Žinutė', 'Kalba', 'Būsena'];
+  const head = ['Data', 'Vardas', 'Telefonas', 'El. paštas', 'Papildoma', 'Paslauga', 'Žinutė', 'Kalba', 'Būsena'];
   const lines = rows.map((r) =>
     [r.created_at, r.name, r.phone, r.email, r.age, r.service_name, r.message, r.lang, STATUSES[r.status] || r.status]
       .map(cell)

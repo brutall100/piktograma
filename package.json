@@ -1,7 +1,7 @@
 {
-  "name": "business-site-node-starter",
+  "name": "piktograma",
   "version": "1.0.0",
-  "description": "Smulkaus verslo svetainės šablonas: Node.js + Express + SQLite, LT/EN, valdymo panelė.",
+  "description": "Piktograma (Jonava) – reklamos paslaugų svetainė su vizitinės kortelės kūrėju. Pagrįsta business-site-node-starter šablonu.",
   "private": true,
   "main": "server.js",
   "type": "commonjs",

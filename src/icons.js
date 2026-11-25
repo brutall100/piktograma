@@ -36,6 +36,18 @@ const paths = {
   instagram: '<rect x="4" y="4" width="16" height="16" rx="4.500"/><circle cx="12" cy="12" r="3.600"/><circle cx="16.700" cy="7.300" r=".6"/>',
   tiktok: '<path d="M14 4v10.500a3.300 3.300 0 1 1-3.300-3.300"/><path d="M14 4c.3 2.400 1.800 4 4.500 4.300"/>',
   youtube: '<rect x="3" y="6" width="18" height="12" rx="3.500"/><path d="m10.500 9.500 4.500 2.500-4.500 2.500z"/>',
+  // Piktogramos paslaugų ikonos
+  card: '<rect x="2.5" y="6" width="19" height="12" rx="1.5"/><path d="M6 10.5h6M6 13.5h4"/><rect x="14.5" y="9.5" width="3.5" height="3.5" transform="rotate(45 16.25 11.25)"/>',
+  print: '<path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="7.5" rx="1.5"/><path d="M7 14h10v6.5H7z"/><path d="M17.5 11.5h.5"/>',
+  sign: '<path d="M12 3v3"/><rect x="3" y="6" width="18" height="10" rx="1"/><path d="M7 21l2-5M17 21l-2-5"/><path d="M7 11h10"/>',
+  lightbox: '<rect x="3" y="7" width="18" height="10" rx="1"/><path d="M7.5 12h9"/><path d="M12 2.5v2M5.2 4.2l1.2 1.6M18.8 4.2l-1.2 1.6M12 19.5v2"/>',
+  car: '<path d="M3 16.5v-4l2-5h9.5l3.5 5h2.5v4"/><circle cx="7.5" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/><path d="M9.5 16.5h5M5.5 12.5h12.5"/>',
+  shirt: '<path d="M8.5 3.5 4 6l-1.5 4.5 3 1V20.5h13V11.5l3-1L20 6l-4.5-2.5c-.5 1.7-1.9 2.7-3.5 2.7S9 5.2 8.5 3.5z"/><rect x="10.5" y="10.5" width="3" height="3" transform="rotate(45 12 12)"/>',
+  rollup: '<rect x="6.5" y="2.5" width="11" height="16" rx="0.5"/><path d="M4.5 20.5h15M12 18.5v2M9 7h6M9 10h4"/>',
+  sticker: '<path d="M4.5 4.5h15v9l-6 6h-9z"/><path d="M13.5 19.5v-6h6"/>',
+  design: '<path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.8 0l.6.6a2 2 0 0 1 0 2.8L8.6 18.8z"/><path d="M13.8 6.8l3.4 3.4"/><rect x="3.2" y="3.2" width="3.5" height="3.5" transform="rotate(45 4.95 4.95)"/>',
+  diamond: '<rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)"/>',
+  mobile: '<rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/>',
 };
 
 function icon(name, size = 20) {

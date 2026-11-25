@@ -31,10 +31,11 @@
         <li><a href="<%= fAnchor('apie') %>"><%= t('nav.about') %></a></li>
         <% if (has.services) { %><li><a href="<%= fAnchor('paslaugos') %>"><%= t('nav.services') %></a></li><% } %>
         <% if (has.schedule) { %><li><a href="<%= fAnchor('tvarkarastis') %>"><%= t('nav.schedule') %></a></li><% } %>
+        <% if (has.gallery) { %><li><a href="<%= paths.gallery %>"><%= t('nav.gallery') %></a></li><% } %>
         <% if (has.prices) { %><li><a href="<%= fAnchor('kainos') %>"><%= t('nav.prices') %></a></li><% } %>
         <% if (has.news) { %><li><a href="<%= paths.news %>"><%= t('nav.news') %></a></li><% } %>
         <% if (has.events) { %><li><a href="<%= paths.events %>"><%= t('nav.events') %></a></li><% } %>
-        <% if (has.gallery) { %><li><a href="<%= paths.gallery %>"><%= t('nav.gallery') %></a></li><% } %>
+        <% if (has.cardMaker) { %><li><a href="<%= paths.card %>"><%= t('nav.card') %></a></li><% } %>
         <li><a href="<%= fAnchor('registracija') %>"><%= t('nav.register') %></a></li>
       </ul>
     </nav>
@@ -44,6 +45,7 @@
       <ul>
         <% if (fAddress) { %><li><%= fAddress %></li><% } %>
         <% if (s.phone) { %><li><a href="tel:<%= s.phone.replace(/[^+\d]/g, '') %>"><%= s.phone %></a></li><% } %>
+        <% if (s.phone2) { %><li><a href="tel:<%= s.phone2.replace(/[^+\d]/g, '') %>"><%= s.phone2 %></a></li><% } %>
         <% if (s.email) { %><li><a href="mailto:<%= s.email %>"><%= s.email %></a></li><% } %>
       </ul>
     </div>

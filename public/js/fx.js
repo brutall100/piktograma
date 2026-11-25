@@ -1,6 +1,6 @@
 /* ==========================================================================
    Fono animacijos
-   1) Plaukiojančios šokio / muzikos ikonos per visą puslapį (#bg-fx)
+   1) Plaukiojantys rombai (Piktogramos motyvas) per visą puslapį (#bg-fx)
    2) Neoniniai šokantys siluetai pradiniame ekrane (#hero-dancers)
    Be išorinių bibliotekų. Gerbia „prefers-reduced-motion“.
    ========================================================================== */
@@ -31,93 +31,50 @@
   /* 1. Plaukiojančios ikonos                                            */
   /* ------------------------------------------------------------------ */
 
-  // Kiekviena ikona piešiama vienetinėje erdvėje (-0.5 … 0.5).
+  // Kiekviena figūra piešiama vienetinėje erdvėje (-0.5 … 0.5).
+  // Piktograma: kvadratai / rombai kaip vizitinėje kortelėje (kontūras, pilnas, dvigubas).
+  const sq = (c, h) => c.rect(-h, -h, h * 2, h * 2);
   const ICONS = [
-    // aštuntinė nata
+    // kontūrinis kvadratas
     (c) => {
       c.beginPath();
-      c.ellipse(-0.12, 0.3, 0.17, 0.12, -0.4, 0, TAU);
-      c.stroke();
-      c.beginPath();
-      c.moveTo(0.04, 0.26);
-      c.lineTo(0.04, -0.42);
-      c.quadraticCurveTo(0.14, -0.2, 0.34, -0.12);
+      sq(c, 0.36);
       c.stroke();
     },
-    // dvi sujungtos natos
+    // pilnas kvadratas
     (c) => {
       c.beginPath();
-      c.ellipse(-0.26, 0.32, 0.14, 0.1, -0.4, 0, TAU);
+      sq(c, 0.3);
+      c.fill();
+    },
+    // kvadratas kvadrate
+    (c) => {
+      c.beginPath();
+      sq(c, 0.42);
       c.stroke();
       c.beginPath();
-      c.ellipse(0.24, 0.22, 0.14, 0.1, -0.4, 0, TAU);
-      c.stroke();
+      sq(c, 0.2);
+      c.fill();
+    },
+    // du persidengiantys (kontūras + šešėlis)
+    (c) => {
       c.beginPath();
-      c.moveTo(-0.13, 0.29);
-      c.lineTo(-0.13, -0.3);
-      c.lineTo(0.37, -0.42);
-      c.lineTo(0.37, 0.19);
-      c.moveTo(-0.13, -0.16);
-      c.lineTo(0.37, -0.28);
+      c.rect(-0.3, -0.3, 0.52, 0.52);
+      c.fill();
+      c.beginPath();
+      c.rect(-0.18, -0.18, 0.52, 0.52);
       c.stroke();
     },
-    // žvaigždutė (blizgesys)
+    // mažas pilnas
     (c) => {
       c.beginPath();
-      c.moveTo(0, -0.46);
-      c.quadraticCurveTo(0.06, -0.06, 0.46, 0);
-      c.quadraticCurveTo(0.06, 0.06, 0, 0.46);
-      c.quadraticCurveTo(-0.06, 0.06, -0.46, 0);
-      c.quadraticCurveTo(-0.06, -0.06, 0, -0.46);
-      c.stroke();
-    },
-    // vinilo plokštelė
-    (c) => {
-      c.beginPath();
-      c.arc(0, 0, 0.44, 0, TAU);
-      c.stroke();
-      c.beginPath();
-      c.arc(0, 0, 0.15, 0, TAU);
-      c.stroke();
-      c.beginPath();
-      c.arc(0, 0, 0.3, -0.5, 0.4);
-      c.stroke();
-      c.beginPath();
-      c.arc(0, 0, 0.3, 2.6, 3.5);
-      c.stroke();
-    },
-    // karūna („legacy“)
-    (c) => {
-      c.beginPath();
-      c.moveTo(-0.42, 0.26);
-      c.lineTo(-0.46, -0.22);
-      c.lineTo(-0.2, 0.02);
-      c.lineTo(0, -0.34);
-      c.lineTo(0.2, 0.02);
-      c.lineTo(0.46, -0.22);
-      c.lineTo(0.42, 0.26);
-      c.closePath();
-      c.stroke();
-    },
-    // žaibas (energija)
-    (c) => {
-      c.beginPath();
-      c.moveTo(0.1, -0.46);
-      c.lineTo(-0.26, 0.06);
-      c.lineTo(0.0, 0.06);
-      c.lineTo(-0.1, 0.46);
-      c.lineTo(0.26, -0.08);
-      c.lineTo(0.0, -0.08);
-      c.closePath();
-      c.stroke();
-    },
-    // žiedas
-    (c) => {
-      c.beginPath();
-      c.arc(0, 0, 0.3, 0, TAU);
-      c.stroke();
+      sq(c, 0.16);
+      c.fill();
     },
   ];
+
+  // Figūrų spalvos: akcentas (raudona), pilka, balta – kaip kortelėje.
+  const PALETTE = [PINK, PINK, PINK, '150, 150, 150', '255, 255, 255'];
 
   function initBackground(canvas) {
     const ctx = canvas.getContext('2d');
@@ -136,6 +93,7 @@
       const count = Math.round(Math.min(34, Math.max(12, (size.w * size.h) / 52000)));
       items = Array.from({ length: count }, (_, i) => ({
         icon: ICONS[i % ICONS.length],
+        color: PALETTE[(i * 3) % PALETTE.length],
         x: rnd(),
         y: rnd(),
         size: 16 + rnd() * 34,
@@ -144,9 +102,9 @@
         sway: 10 + rnd() * 26,
         swaySpeed: 0.15 + rnd() * 0.3,
         phase: rnd() * TAU,
-        rot: rnd() * TAU,
-        rotSpeed: (rnd() - 0.5) * 0.35,
-        alpha: 0.07 + rnd() * 0.13,
+        rot: Math.PI / 4 + (rnd() - 0.5) * 0.3,
+        rotSpeed: (rnd() - 0.5) * 0.12,
+        alpha: 0.08 + rnd() * 0.14,
       }));
     }
 
@@ -154,8 +112,8 @@
       const { w, h, dpr } = size;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
+      ctx.lineCap = 'butt';
+      ctx.lineJoin = 'miter';
       const margin = 120;
       const span = h + margin * 2;
       const scroll = window.scrollY || 0;
@@ -165,10 +123,12 @@
         const s = p.size * (0.6 + p.depth * 0.6);
         ctx.save();
         ctx.translate(x, y);
-        ctx.rotate(p.rot + t * p.rotSpeed);
+        ctx.rotate(p.rot + Math.sin(t * p.rotSpeed + p.phase) * 0.35);
         ctx.scale(s, s);
         ctx.lineWidth = 1.5 / s;
-        ctx.strokeStyle = `rgba(${PINK}, ${p.alpha * (0.5 + p.depth * 0.5)})`;
+        const a = p.alpha * (0.5 + p.depth * 0.5);
+        ctx.strokeStyle = `rgba(${p.color}, ${a})`;
+        ctx.fillStyle = `rgba(${p.color}, ${a * 0.8})`;
         p.icon(ctx);
         ctx.restore();
       }
