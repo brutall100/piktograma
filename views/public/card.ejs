@@ -169,7 +169,7 @@
         <label class="field">
           <span class="field__label"><%= t('card.qty') %></span>
           <select name="qty" data-cm-qty>
-            <% [100, 250, 500, 1000].forEach((q) => { %><option value="<%= q %>"><%= q %></option><% }) %>
+            <% [[60, '7 €'], [100, '14 €'], [250], [500], [1000]].forEach(([q, pr]) => { %><option value="<%= q %>"><%= q %><% if (pr) { %> – <%= lang === 'en' ? '€' + pr.replace(' €', '') : pr %><% } %></option><% }) %>
           </select>
         </label>
         <label class="field">

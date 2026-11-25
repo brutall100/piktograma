@@ -116,7 +116,7 @@ async function seed() {
     ['card', 'Vizitinės kortelės', 'Business cards',
       'Vienpusės ar dvipusės, matinės ar blizgios, ant įvairaus storio popieriaus. Maketą sukursime patys arba spausdinsime jūsų.',
       'Single or double-sided, matte or gloss, on a range of paper weights. We can design the layout or print yours.',
-      'nuo 100 vnt.', 'from 100 pcs', 'nuo 15 €', 'from €15'],
+      'nuo 60 vnt.', 'from 60 pcs', 'nuo 7 €', 'from €7'],
     ['print', 'Spaudos darbai', 'Printing',
       'Skrajutės, lankstinukai, plakatai, kvietimai, blankai, kalendoriai ir kiti spaudiniai – nuo A6 iki didelio formato.',
       'Flyers, leaflets, posters, invitations, forms, calendars and more – from A6 up to large format.',
@@ -169,9 +169,9 @@ async function seed() {
 
   /* --- Kainos (orientacinės) --- */
   [
-    ['Vizitinės kortelės', 'Business cards', 'nuo 15 €', '/ 100 vnt.', '/ 100 pcs',
-      'Spalvota spauda vienoje pusėje\n350 g/m² kreidinis popierius\nMaketo pataisymai\nPagaminama per 2–3 d. d.',
-      'Full colour, one side\n350 gsm coated paper\nLayout corrections\nReady in 2–3 working days', 1],
+    ['Vizitinės kortelės', 'Business cards', '7 €', '/ 60 vnt.', '/ 60 pcs',
+      '60 vnt. – 7 €\n100 vnt. – 14 €\nKitiems kiekiams – kaina pagal užklausą',
+      '60 pcs – €7\n100 pcs – €14\nOther quantities – price on request', 1],
     ['Skrajutės A5', 'A5 flyers', 'nuo 35 €', '/ 500 vnt.', '/ 500 pcs',
       'Spalvota spauda abiejose pusėse\n130 g/m² kreidinis popierius\nPagaminama per 3–4 d. d.',
       'Full colour, both sides\n130 gsm coated paper\nReady in 3–4 working days', 0],
@@ -215,9 +215,9 @@ async function seed() {
       'Do you install signs and wrap vehicles?',
       'Yes – we install signs, stands and light boxes in Jonava and the surrounding area, and apply vehicle graphics on site.'],
     ['Ar galima užsakyti mažą kiekį?',
-      'Taip. Marškinėlius su užrašu ar lipdukus galima užsakyti ir po vieną, o vizitines korteles – nuo 100 vienetų.',
+      'Taip. Marškinėlius su užrašu ar lipdukus galima užsakyti ir po vieną, o vizitines korteles – nuo 60 vienetų.',
       'Can I order a small quantity?',
-      'Yes. T-shirts and stickers can be ordered even as a single piece; business cards start at 100.'],
+      'Yes. T-shirts and stickers can be ordered even as a single piece; business cards start at 60.'],
     ['Kaip veikia vizitinės kortelės kūrėjas?',
       'Svetainėje įrašykite savo duomenis, pasirinkite šabloną ir spalvą – kortelę matysite iš karto. Ją galite atsisiųsti kaip PDF spaudai arba PNG, o paspaudę „Užsakyti spausdinimą“ – atsiųsti mums.',
       'How does the business card maker work?',
