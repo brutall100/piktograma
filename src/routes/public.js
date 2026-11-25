@@ -182,7 +182,7 @@ function home(lang) {
       testimonials: on('testimonials') ? all('SELECT * FROM testimonials ORDER BY sort, id') : [],
       news: on('news') ? all('SELECT * FROM news WHERE published = 1 ORDER BY published_at DESC, id DESC LIMIT 3') : [],
       events: on('events') ? upcomingEvents(4) : [],
-      gallery: on('gallery') ? await withSizes(all('SELECT * FROM gallery ORDER BY sort, id LIMIT 8')) : [],
+      gallery: on('gallery') ? await withSizes(all('SELECT * FROM gallery ORDER BY sort, id LIMIT 24')) : [],
       galleryCount: get('SELECT COUNT(*) AS n FROM gallery').n,
       formToken: formToken(),
       sent: req.query.sent === '1',

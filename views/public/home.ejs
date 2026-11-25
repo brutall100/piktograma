@@ -19,6 +19,7 @@
   <div class="hero__bg" aria-hidden="true">
     <% if (s.hero_video) { %>
       <video class="hero__video" id="hero-video" src="<%= img(s.hero_video) %>" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="hero__dim"></div>
     <% } %>
     <% if (brand.heroEffect !== 'none') { %>
     <div class="hero__beam hero__beam--1"></div>
@@ -197,7 +198,12 @@
         <div class="trainer__body">
           <h3 class="trainer__name"><%= p.name %></h3>
           <% if (L(p, 'role')) { %><p class="trainer__role"><%= L(p, 'role') %></p><% } %>
-          <% if (L(p, 'bio')) { %><p class="trainer__bio"><%= L(p, 'bio') %></p><% } %>
+          <% if (L(p, 'bio')) { const paras = L(p, 'bio').split(/\r?\n\s*\r?\n/).map((x) => x.trim()).filter(Boolean); %>
+          <div class="trainer__bio" id="bio-<%= p.id %>" data-clamp>
+            <% paras.forEach((para) => { %><p><%= para.replace(/\s*\r?\n\s*/g, ' ') %></p><% }) %>
+          </div>
+          <button class="trainer__more" type="button" data-clamp-btn aria-controls="bio-<%= p.id %>" aria-expanded="false" data-more="<%= t('team.more') %>" data-less="<%= t('team.less') %>" hidden><%= t('team.more') %></button>
+          <% } %>
           <% if (p.instagram) { %>
             <a class="trainer__link" href="<%= p.instagram %>" target="_blank" rel="noopener noreferrer"><%- icon('instagram', 18) %> Instagram</a>
           <% } %>
@@ -290,9 +296,13 @@
       <a class="link-arrow" href="<%= paths.gallery %>"><%= t('gallery.all') %> (<%= galleryCount %>) <%- icon('arrow', 18) %></a>
       <% } %>
     </header>
-    <div class="gallery__grid gallery__grid--home" data-gallery>
+    <div class="gallery__grid gallery__grid--home" data-gallery data-rows="2">
       <% gallery.forEach((g) => { %><%- include('partials/gallery-item', { g }) %><% }) %>
     </div>
+    <p class="gallery__more" data-gallery-more hidden>
+      <button class="btn btn--ghost" type="button" data-more-btn><%= t('gallery.more') %></button>
+      <% if (galleryCount > gallery.length) { %><a class="btn btn--ghost" href="<%= paths.gallery %>" data-more-all hidden><%= t('gallery.all') %> (<%= galleryCount %>)</a><% } %>
+    </p>
   </div>
 </section>
 <% } %>

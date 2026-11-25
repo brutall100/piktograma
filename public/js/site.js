@@ -67,6 +67,14 @@
     });
   }
 
+  /* Fono video groja tik kai matomas – slenkant puslapį naršyklei mažiau darbo */
+  if (heroVideo && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) heroVideo.play().catch(() => {});
+      else heroVideo.pause();
+    }).observe(heroVideo);
+  }
+
   /* ---------- Antraštė ---------- */
   const header = $('[data-header]');
   if (header) {
@@ -215,6 +223,75 @@
       frame.innerHTML = '';
       frame.appendChild(iframe);
     });
+  });
+
+  /* ---------- Komandos aprašymai: 4 eilutės + „Skaityti daugiau“ ---------- */
+  $$('[data-clamp]').forEach((bio) => {
+    const btn = bio.parentElement.querySelector(`[data-clamp-btn][aria-controls="${bio.id}"]`);
+    if (!btn) return;
+    let open = false;
+    const check = () => {
+      if (open) return;
+      bio.classList.add('is-clamped');
+      const long = bio.scrollHeight > bio.clientHeight + 4;
+      bio.classList.toggle('is-clamped', long);
+      btn.hidden = !long;
+    };
+    btn.addEventListener('click', () => {
+      open = !open;
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? btn.dataset.less : btn.dataset.more;
+      if (open) {
+        // sklandžiai išskleidžiam iki pilno aukščio
+        const from = bio.clientHeight;
+        bio.classList.remove('is-clamped');
+        const to = bio.scrollHeight;
+        bio.style.maxHeight = `${from}px`;
+        void bio.offsetHeight;
+        bio.style.maxHeight = `${to}px`;
+        bio.addEventListener('transitionend', () => {
+          if (open) bio.style.maxHeight = '';
+        }, { once: true });
+      } else {
+        // atgal į 4 eilutes
+        bio.style.maxHeight = `${bio.scrollHeight}px`;
+        void bio.offsetHeight;
+        bio.classList.add('is-clamped');
+        bio.style.maxHeight = '';
+        const card = bio.closest('.trainer');
+        if (card.getBoundingClientRect().top < 0) card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      }
+    });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+  });
+
+  /* ---------- Galerija pradžioje: 2 eilės + „Rodyti daugiau“ ---------- */
+  $$('[data-rows]').forEach((grid) => {
+    const box = grid.parentElement.querySelector('[data-gallery-more]');
+    const btn = box && $('[data-more-btn]', box);
+    const all = box && $('[data-more-all]', box);
+    const items = Array.from(grid.children);
+    let rows = Number(grid.dataset.rows) || 2;
+    const apply = () => {
+      const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+      const limit = rows * cols;
+      items.forEach((el, i) => {
+        el.hidden = i >= limit;
+      });
+      const more = items.length > limit;
+      if (box) box.hidden = !more && !all;
+      if (btn) btn.hidden = !more;
+      if (all) all.hidden = more;
+    };
+    if (btn) {
+      btn.addEventListener('click', () => {
+        rows += 2;
+        apply();
+      });
+    }
+    window.addEventListener('resize', apply, { passive: true });
+    apply();
   });
 
   /* ---------- Nuotraukų peržiūra (lightbox) ---------- */
