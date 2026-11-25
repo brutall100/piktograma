@@ -14,6 +14,13 @@ Sukurta pagal šabloną [business-site-node-starter](https://github.com/brutall1
   logotipas (lieka naršyklėje), dvipusė kortelė; atsisiuntimas **PDF spaudai** (96 × 56 mm su 3 mm užlaidomis, 600 dpi, TrimBox)
   ir **PNG**; „Užsakyti spausdinimą“ – užklausa su kortelės duomenimis, kiekiu ir popieriumi patenka į admin „Užklausos“.
   Kodas: `public/js/card.js`, `views/public/card.ejs`.
+- **Dvi dizaino temos** (tas pats turinys):
+  - **Kortelė** (numatyta) – tamsi, įstrižainės ir rombai kaip vizitinėje kortelėje;
+  - **Spaustuvė** – šviesus „popierius“, spaudos ženklai (kirpimo žymės, registracijos ženklai, CMYK juostelė),
+    pradiniame ekrane atkurta tikroji Piktogramos vizitinė, paslaugos – numeruotas sąrašas, kainos – kainoraštis,
+    užklausa – „užsakymo lapas“.
+  Tema keičiama admin → Nustatymai → Dizainas. Peržiūrai be nustatymo keitimo: `?tema=spaustuve` / `?tema=kortele`
+  (įsimenama slapuku); kol rodoma pristatymo juosta, joje yra perjungiklis.
 - **Išjungta:** tvarkaraštis, komanda, renginiai (`src/brand.js`). Atsiliepimai rodomi, kai admin panelėje įvedamas bent vienas.
 
 > Kainos, darbo laikas ir darbų pavyzdžiai – **pavyzdiniai** (viršuje rodoma juosta „Svetainės pristatymo versija…“).

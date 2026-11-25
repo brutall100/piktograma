@@ -63,6 +63,21 @@ const itemSlug = (row, lang) => {
   return s ? `${row.id}-${s}` : String(row.id);
 };
 
+/**
+ * Dizaino tema: ?tema=… (peržiūrai, įsimenama slapuku) → slapukas → admin nustatymas → src/brand.js.
+ */
+const THEMES = brand.themes || ['kortele'];
+function pickTheme(req, res, s) {
+  const q = String(req.query.tema || '');
+  if (THEMES.includes(q)) {
+    res.append('Set-Cookie', `tema=${q}; Path=/; Max-Age=${60 * 60 * 24 * 30}; SameSite=Lax`);
+    return q;
+  }
+  const m = /(?:^|;\s*)tema=([a-z]+)/.exec(req.headers.cookie || '');
+  if (m && THEMES.includes(m[1])) return m[1];
+  return THEMES.includes(s.theme) ? s.theme : brand.theme || THEMES[0];
+}
+
 /** Paruošia bendrus šablono kintamuosius. */
 function setLocals(req, res, lang, extra = {}) {
   const s = getSettings();
@@ -81,6 +96,8 @@ function setLocals(req, res, lang, extra = {}) {
   Object.assign(res.locals, {
     lang,
     other,
+    theme: pickTheme(req, res, s),
+    themes: THEMES,
     t: (key) => dict[key] ?? dicts.lt[key] ?? key,
     s,
     S,

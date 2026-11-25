@@ -121,6 +121,22 @@ test('vizitinės kortelės kūrėjas: puslapis ir užsakymas į užklausas', asy
   assert.match(en, /Business card maker/);
 });
 
+test('dizaino tema: numatyta „Kortelė“, ?tema=spaustuve perjungia ir įsimena', async () => {
+  const def = await (await fetch(base + '/')).text();
+  assert.match(def, /theme-kortele/);
+  assert.match(def, /class="hero/);
+  const res = await fetch(base + '/?tema=spaustuve');
+  const html = await res.text();
+  assert.match(html, /theme-spaustuve/);
+  assert.match(html, /class="phero"/);
+  const cookie = res.headers.get('set-cookie');
+  assert.match(cookie, /tema=spaustuve/);
+  const again = await (await fetch(base + '/en', { headers: { cookie: 'tema=spaustuve' } })).text();
+  assert.match(again, /theme-spaustuve/);
+  const bad = await (await fetch(base + '/?tema=<script>')).text();
+  assert.match(bad, /theme-kortele/);
+});
+
 test('išjungti renginiai nepasiekiami', async () => {
   assert.equal((await fetch(base + '/renginiai')).status, 404);
   assert.equal((await fetch(base + '/en/events')).status, 404);

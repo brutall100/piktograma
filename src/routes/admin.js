@@ -648,7 +648,7 @@ router.get('/settings', (req, res) => {
     groups: settingsGroups,
     row: { ...defaultsFor(settingsFields), ...getSettings() },
     errors: [],
-    options: {},
+    options: loadOptions(settingsFields),
   });
 });
 
@@ -662,7 +662,7 @@ router.post('/settings', upload(up.settingsUpload), async (req, res, next) => {
         groups: settingsGroups,
         row: { ...existing, ...values },
         errors,
-        options: {},
+        options: loadOptions(settingsFields),
       });
     }
     setSettings(values);

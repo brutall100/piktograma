@@ -4,6 +4,8 @@ Tai **Piktograma** (reklamos paslaugos, Jonava) – svetainė, sukurta pagal **b
 Piktogramos specifika: tema `site.css` pabaigoje („PIKTOGRAMA TEMA“), `heroEffect: 'squares'` (`views/public/partials/squares.ejs`),
 šviesios sekcijos `.section--paper`, vizitinės kortelės kūrėjas (`/vizitine-kortele`: `views/public/card.ejs` + `public/js/card.js`, modulis `cardMaker`),
 paslaugų ikonos (`icon` laukas, `src/icons.js`), antras telefonas (`phone2`), galerijos aprašai `seed-assets/captions.json`.
+Dvi temos: `body.theme-kortele` (numatyta) ir `body.theme-spaustuve` (CSS blokas „TEMA SPAUSTUVĖ“ `site.css` pabaigoje,
+pradinis ekranas `views/public/partials/hero-print.ejs`). Tema: `?tema=` → slapukas → nustatymas `theme` → `brand.theme` (`pickTheme()` `src/routes/public.js`).
 Vieša svetainė LT/EN + valdymo panelė `/admin`. Kilmė: KD Legacy šokių studijos projektas.
 
 **Neskaityk viso kodo.** Naujam klientui beveik visada užtenka šių failų (eilės tvarka):

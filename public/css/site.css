@@ -4303,3 +4303,995 @@ main {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.register__sheet {
+  display: none;
+}
+.demo-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem 1.2rem;
+}
+.demo-bar__themes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.demo-bar__themes a {
+  padding: 0.05rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  color: #fff;
+}
+.demo-bar__themes a[aria-current] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ==========================================================================
+   TEMA „SPAUSTUVĖ“ (body.theme-spaustuve)
+   Šviesus popierius, juodi dažai, raudonas akcentas; spaudos kalba:
+   kirpimo žymės, registracijos ženklai, CMYK juostelė. Įjungiama admin →
+   Nustatymai → Dizainas arba peržiūrai ?tema=spaustuve.
+   ========================================================================== */
+.theme-spaustuve {
+  --bg: #f3f0ea;
+  --bg-2: #ffffff;
+  --bg-3: #e7e2d8;
+  --paper: #ffffff;
+  --text: #161616;
+  --muted: rgba(22, 22, 22, 0.7);
+  --faint: rgba(22, 22, 22, 0.46);
+  --line: rgba(22, 22, 22, 0.16);
+  --ink: #161616;
+  --radius: 0px;
+  --c: #00a0dc;
+  --m: #e4007c;
+  --y: #ffd200;
+  --k: #161616;
+}
+.theme-spaustuve ::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* --- spaudos ženklai --- */
+.regmark {
+  /* registracijos ženklas ⌖ */
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.regmark::before,
+.regmark::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+.regmark::before {
+  left: 50%;
+  top: -5px;
+  bottom: -5px;
+  width: 1.5px;
+  transform: translateX(-50%);
+}
+.regmark::after {
+  top: 50%;
+  left: -5px;
+  right: -5px;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
+.cmyk {
+  display: flex;
+  height: 12px;
+}
+.cmyk i {
+  flex: 1;
+}
+.cmyk i:nth-child(1) { background: var(--c); }
+.cmyk i:nth-child(2) { background: var(--m); }
+.cmyk i:nth-child(3) { background: var(--y); }
+.cmyk i:nth-child(4) { background: var(--k); }
+.cmyk i:nth-child(5) { background: color-mix(in srgb, var(--k) 70%, #fff); }
+.cmyk i:nth-child(6) { background: color-mix(in srgb, var(--k) 45%, #fff); }
+.cmyk i:nth-child(7) { background: color-mix(in srgb, var(--k) 20%, #fff); }
+.cmyk i:nth-child(8) { background: var(--accent); }
+
+/* --- tipografija: be rašytinio šrifto, ramūs didžiųjų/mažųjų raidžių pavadinimai --- */
+.theme-spaustuve .h2 {
+  text-transform: none;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.4vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+.theme-spaustuve .h2 em {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1em;
+  line-height: inherit;
+  transform: none;
+  padding: 0;
+  color: var(--accent);
+}
+.theme-spaustuve .label {
+  color: var(--text);
+  letter-spacing: 0.16em;
+}
+.theme-spaustuve .label::after {
+  /* vietoj rombo – registracijos ženklas */
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--accent), var(--accent)) center / 1.5px 100% no-repeat,
+    linear-gradient(var(--accent), var(--accent)) center / 100% 1.5px no-repeat;
+  transform: none;
+}
+.theme-spaustuve main {
+  counter-reset: sec;
+}
+.theme-spaustuve .section .section__head .label::before {
+  counter-increment: sec;
+  content: counter(sec, decimal-leading-zero);
+  color: var(--accent);
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+.theme-spaustuve .label--dark::before {
+  color: var(--accent);
+}
+
+/* --- mygtukai --- */
+.theme-spaustuve .btn {
+  border-radius: 0;
+}
+.theme-spaustuve .btn--ghost {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.theme-spaustuve .btn--ghost:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.theme-spaustuve .btn--dark {
+  background: var(--ink);
+  color: #fff;
+}
+.theme-spaustuve .btn--primary:hover {
+  box-shadow: 6px 6px 0 var(--ink);
+  transform: translate(-3px, -3px);
+}
+
+/* --- antraštė --- */
+.theme-spaustuve .site-header {
+  background: rgba(243, 240, 234, 0.92);
+  border-bottom: 1px solid var(--ink);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.theme-spaustuve .site-header.is-scrolled,
+.theme-spaustuve.is-sub .site-header {
+  background: rgba(243, 240, 234, 0.92);
+  border-bottom-color: var(--ink);
+}
+.theme-spaustuve .nav__link,
+.theme-spaustuve .nav__link--hot,
+.theme-spaustuve .nav__link:hover,
+.theme-spaustuve .nav__link.is-current {
+  color: var(--ink);
+}
+.theme-spaustuve .nav__link:hover {
+  color: var(--accent);
+}
+.theme-spaustuve .brand-logo__b {
+  color: var(--ink);
+}
+.theme-spaustuve .lang {
+  border-color: rgba(22, 22, 22, 0.3);
+}
+.theme-spaustuve .lang__on {
+  color: #fff;
+}
+.theme-spaustuve .lang:hover .lang__off {
+  color: var(--ink);
+}
+.theme-spaustuve .burger {
+  border-color: rgba(22, 22, 22, 0.3);
+}
+.theme-spaustuve .burger__lines,
+.theme-spaustuve .burger__lines::before,
+.theme-spaustuve .burger__lines::after {
+  background: var(--ink);
+}
+.theme-spaustuve.nav-open .burger__lines {
+  background: transparent;
+}
+@media (max-width: 1180px) {
+  .theme-spaustuve .nav {
+    background: var(--bg);
+  }
+}
+
+/* --- pradinis ekranas --- */
+.phero {
+  position: relative;
+  padding: calc(var(--header-h) + clamp(2rem, 6vw, 5rem)) 0 clamp(3rem, 7vw, 5.5rem);
+  background:
+    linear-gradient(rgba(22, 22, 22, 0.045) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(22, 22, 22, 0.045) 1px, transparent 1px) 0 0 / 28px 28px,
+    var(--bg);
+  overflow: hidden;
+}
+.phero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+.phero__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.phero__title {
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.7rem, 7.2vw, 6.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.phero__title em {
+  font-style: normal;
+  color: var(--accent);
+  /* raudona „spauda“ su nedideliu registracijos poslinkiu */
+  text-shadow: 3px 3px 0 rgba(0, 160, 220, 0.35);
+}
+.phero__text {
+  margin-top: 1.4rem;
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+}
+.phero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+.phero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 0 clamp(1.4rem, 4vw, 3rem);
+  margin-top: clamp(2rem, 5vw, 3.4rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--ink);
+}
+.phero__facts dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.phero__facts dd {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.phero__sheet {
+  justify-self: center;
+  width: min(100%, 400px);
+}
+.sheet {
+  position: relative;
+  padding: 34px 34px 22px;
+  background: #fff;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.05),
+    0 30px 60px -30px rgba(0, 0, 0, 0.45);
+  transform: rotate(2deg);
+  animation: sheetIn 1s var(--ease) both;
+}
+@keyframes sheetIn {
+  from {
+    opacity: 0;
+    transform: rotate(6deg) translateY(30px);
+  }
+}
+.pcard {
+  display: block;
+  width: 100%;
+  height: auto;
+  outline: 1px dashed rgba(229, 49, 38, 0.6);
+  outline-offset: 7px; /* užlaidų (bleed) linija */
+}
+.pcard__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 66px;
+  fill: var(--accent);
+  letter-spacing: -1px;
+}
+.pcard__script {
+  font-family: var(--font-script);
+  font-size: 42px;
+  fill: #fff;
+}
+.pcard__sq .r { fill: var(--accent); }
+.pcard__sq .g { fill: #8d8d90; }
+.pcard__sq .gl { fill: #c4c4c6; }
+.pcard__sq .l { fill: #d6d6d8; }
+.pcard__sq .w { fill: #fff; }
+.pcard__sq .o,
+.pcard__sq .og {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 5;
+}
+.pcard__sq .og {
+  fill: #8d8d90;
+}
+.pcard__ico {
+  fill: none;
+  stroke: #121212;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pcard__line {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 27px;
+  fill: #121212;
+}
+.crop {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+}
+.crop::before,
+.crop::after {
+  content: '';
+  position: absolute;
+  background: var(--ink);
+}
+.crop::before {
+  width: 1px;
+  height: 16px;
+}
+.crop::after {
+  width: 16px;
+  height: 1px;
+}
+.crop--tl { top: 8px; left: 8px; }
+.crop--tl::before { right: 4px; top: 0; }
+.crop--tl::after { bottom: 4px; left: 0; }
+.crop--tr { top: 8px; right: 8px; }
+.crop--tr::before { left: 4px; top: 0; }
+.crop--tr::after { bottom: 4px; right: 0; }
+.crop--bl { bottom: 30px; left: 8px; }
+.crop--bl::before { right: 4px; bottom: 0; }
+.crop--bl::after { top: 4px; left: 0; }
+.crop--br { bottom: 30px; right: 8px; }
+.crop--br::before { left: 4px; bottom: 0; }
+.crop--br::after { top: 4px; right: 0; }
+.sheet__reg {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  color: var(--ink);
+}
+.sheet__reg--l { left: 9px; }
+.sheet__reg--r { right: 9px; }
+.sheet .cmyk {
+  margin-top: 26px;
+  height: 9px;
+}
+.sheet__note {
+  margin-top: 1.4rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  text-align: center;
+}
+@media (max-width: 860px) {
+  .phero__grid {
+    grid-template-columns: 1fr;
+  }
+  .phero__sheet {
+    width: min(64%, 270px);
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+  .phero__facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* --- bėganti juosta: tiesi, kaip spausdintuvo juosta --- */
+.theme-spaustuve .marquee {
+  transform: none;
+  margin: 0;
+  background: var(--ink);
+  color: #fff;
+  border-block: 4px solid var(--accent);
+}
+.theme-spaustuve .marquee span {
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  padding: 0.85em 0;
+}
+.theme-spaustuve .marquee__sep {
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--accent);
+}
+
+/* --- sekcijos: be įstrižainių, atskirtos linija --- */
+.theme-spaustuve .section {
+  border-top: 1px solid var(--line);
+}
+.theme-spaustuve .section--paper {
+  clip-path: none;
+  margin-top: 0;
+  padding-top: clamp(3.6rem, 7.5vw, 6.2rem);
+  background: var(--paper);
+}
+
+/* --- apie --- */
+.theme-spaustuve .badge {
+  display: none;
+}
+.theme-spaustuve .about__side {
+  padding-top: 0.5rem;
+}
+.theme-spaustuve .pillar__num {
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+}
+.theme-spaustuve .stats dt {
+  color: var(--ink);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+}
+.theme-spaustuve .stats dt::after {
+  content: '';
+  display: block;
+  width: 1.6rem;
+  height: 4px;
+  margin-top: 0.5rem;
+  background: var(--accent);
+}
+
+/* --- paslaugos: numeruotas sąrašas --- */
+.theme-spaustuve .classes__grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+.theme-spaustuve .class-card {
+  display: grid;
+  grid-template-columns: 3rem 3.4rem minmax(0, 1fr) minmax(0, 1.4fr) auto 2.5rem;
+  align-items: center;
+  gap: 0 1.3rem;
+  padding: 1.15rem 0.6rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.theme-spaustuve .class-card::before {
+  background: var(--ink);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.45s var(--ease);
+}
+.theme-spaustuve .class-card:hover::before,
+.theme-spaustuve .class-card:focus-within::before {
+  clip-path: inset(0 0 0 0);
+}
+.theme-spaustuve .class-card:hover,
+.theme-spaustuve .class-card:focus-within {
+  transform: none;
+  color: #fff;
+}
+.theme-spaustuve .class-card__num {
+  position: static;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--accent);
+}
+.theme-spaustuve .class-card__icon {
+  width: 46px;
+  height: 46px;
+  margin: 0;
+}
+.theme-spaustuve .class-card__icon::before {
+  transform: none;
+  border-radius: 50%;
+  inset: 3px;
+}
+.theme-spaustuve .class-card:hover .class-card__icon::before {
+  transform: none;
+}
+.theme-spaustuve .class-card__title {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  text-transform: none;
+}
+.theme-spaustuve .class-card__text {
+  margin: 0;
+  font-size: 0.88rem;
+}
+.theme-spaustuve .class-card .chips {
+  justify-content: flex-end;
+}
+.theme-spaustuve .class-card .chips li:first-child {
+  display: none;
+}
+.theme-spaustuve .class-card .chips li {
+  border: 0;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 1;
+}
+.theme-spaustuve .class-card__cta {
+  justify-self: end;
+  font-size: 0;
+  gap: 0;
+}
+.theme-spaustuve .class-card__cta .ico {
+  width: 24px;
+  height: 24px;
+}
+@media (max-width: 900px) {
+  .theme-spaustuve .class-card {
+    grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      'num title cta'
+      'num text text'
+      'num chips chips';
+    gap: 0.35rem 0.8rem;
+    align-items: start;
+  }
+  .theme-spaustuve .class-card__num { grid-area: num; padding-top: 0.15rem; }
+  .theme-spaustuve .class-card__icon { display: none; }
+  .theme-spaustuve .class-card__title { grid-area: title; }
+  .theme-spaustuve .class-card__text { grid-area: text; }
+  .theme-spaustuve .class-card .chips { grid-area: chips; justify-content: flex-start; }
+  .theme-spaustuve .class-card__cta { grid-area: cta; }
+}
+
+/* --- kaip dirbame: C M Y K registracijos ženklai --- */
+.theme-spaustuve .step__num {
+  color: var(--ink);
+  margin-left: 0;
+}
+.theme-spaustuve .step__num::before,
+.theme-spaustuve .step:nth-child(n) .step__num::before {
+  transform: none;
+  border-radius: 50%;
+  background: none;
+  border: 3px solid var(--c);
+}
+.theme-spaustuve .step:nth-child(2) .step__num::before { border-color: var(--m); }
+.theme-spaustuve .step:nth-child(3) .step__num::before { border-color: var(--y); }
+.theme-spaustuve .step:nth-child(4) .step__num::before { border-color: var(--k); }
+.theme-spaustuve .step__num::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center top / 1px 8px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) center bottom / 1px 8px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) left center / 8px 1px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) right center / 8px 1px no-repeat;
+}
+.theme-spaustuve .step::before {
+  top: 2.15rem;
+  left: 4.8rem;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 12px);
+  opacity: 0.4;
+}
+.theme-spaustuve .step:nth-child(4) .step__num {
+  color: var(--ink);
+}
+
+/* --- vizitinės kūrėjo reklama: kortelės ant pjaustymo kilimėlio --- */
+.theme-spaustuve .card-promo {
+  background: var(--bg);
+  color: var(--ink);
+}
+.theme-spaustuve .card-promo::before {
+  display: none;
+}
+.theme-spaustuve .card-promo .h2 em {
+  color: var(--accent);
+}
+.theme-spaustuve .card-promo .tag {
+  background: var(--accent);
+}
+.theme-spaustuve .card-promo__visual {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.13) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.13) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px) 0 0 / 120px 120px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px) 0 0 / 120px 120px,
+    #2f5e51;
+  box-shadow: inset 0 0 0 10px #284f45;
+}
+.theme-spaustuve .mini-card--back {
+  background: var(--ink);
+  border: 0;
+}
+
+/* --- darbai: atspaudai su parašais --- */
+.theme-spaustuve .gallery__grid {
+  gap: clamp(14px, 2vw, 26px);
+}
+.theme-spaustuve .gallery-item {
+  aspect-ratio: auto;
+  padding: 10px 10px 40px;
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 16px 30px -20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.35s var(--ease);
+}
+.theme-spaustuve .gallery-item:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+.theme-spaustuve .gallery-item:nth-child(3n) {
+  transform: rotate(1.2deg);
+}
+.theme-spaustuve .gallery-item:hover {
+  transform: rotate(0) translateY(-4px);
+}
+.theme-spaustuve .gallery-item img {
+  aspect-ratio: 4 / 5;
+  height: auto;
+}
+.theme-spaustuve .gallery-item::after {
+  inset: 10px 10px 40px;
+}
+.theme-spaustuve .gallery-item::before {
+  content: attr(data-caption);
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 11px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- kainos: kainoraštis --- */
+.theme-spaustuve .prices__grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 2px solid var(--ink);
+}
+.theme-spaustuve .price {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto auto;
+  align-items: center;
+  gap: 0.6rem 2rem;
+  padding: 1.3rem 0.6rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+}
+.theme-spaustuve .price:hover {
+  transform: none;
+  background: var(--paper);
+}
+.theme-spaustuve .price--hot {
+  color: var(--ink);
+  background: none;
+  box-shadow: inset 4px 0 0 var(--accent);
+  padding-left: 1.2rem;
+}
+.theme-spaustuve .price__flag {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  margin-top: -0.9rem;
+  padding: 0.2em 0.6em;
+  background: var(--accent);
+  font-size: 0.62rem;
+}
+.theme-spaustuve .price--hot .price__name {
+  grid-row: 1;
+  margin-top: 1rem;
+}
+.theme-spaustuve .price__name {
+  grid-column: 1;
+  text-transform: none;
+  font-size: 1.1rem;
+}
+.theme-spaustuve .price__list {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.theme-spaustuve .price__list .ico,
+.theme-spaustuve .price--hot .price__list .ico {
+  color: var(--accent);
+}
+.theme-spaustuve .price__amount {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+.theme-spaustuve .price__amount strong {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+.theme-spaustuve .price .btn {
+  grid-column: 4;
+  grid-row: 1;
+  margin: 0;
+}
+.theme-spaustuve .price--hot .btn--dark {
+  background: var(--accent);
+}
+@media (max-width: 900px) {
+  .theme-spaustuve .price {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .theme-spaustuve .price__list {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .theme-spaustuve .price__amount {
+    grid-column: 2;
+  }
+  .theme-spaustuve .price .btn {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: start;
+  }
+}
+
+/* --- naujienos, atsiliepimai, DUK --- */
+.theme-spaustuve .news-card__media {
+  border-color: var(--line);
+}
+.theme-spaustuve .quote {
+  background: var(--paper);
+}
+.theme-spaustuve .faq__item summary i {
+  border-radius: 50%;
+  transform: none;
+}
+.theme-spaustuve .faq__item summary i::before,
+.theme-spaustuve .faq__item summary i::after {
+  rotate: 0deg;
+}
+.theme-spaustuve .faq__item[open] summary i {
+  transform: rotate(180deg);
+}
+
+/* --- užklausa: užsakymo lapas --- */
+.theme-spaustuve .register {
+  background: var(--bg);
+  color: var(--ink);
+}
+.theme-spaustuve .register::before {
+  display: none;
+}
+.theme-spaustuve .register .h2 em {
+  color: var(--accent);
+  text-shadow: none;
+}
+.theme-spaustuve .register__contacts a {
+  color: var(--ink);
+}
+.theme-spaustuve .register__contacts .ico {
+  color: var(--accent);
+}
+.theme-spaustuve .register__panel {
+  position: relative;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--ink);
+  padding-top: clamp(1rem, 2.5vw, 1.6rem);
+}
+.theme-spaustuve .register__sheet {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.theme-spaustuve .register__sheet span:last-child {
+  color: var(--accent);
+}
+.theme-spaustuve .field input,
+.theme-spaustuve .field select,
+.theme-spaustuve .field textarea {
+  border: 0;
+  border-bottom: 1.5px solid rgba(22, 22, 22, 0.35);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  padding-inline: 0.1rem;
+}
+.theme-spaustuve .field textarea {
+  border: 1.5px solid rgba(22, 22, 22, 0.25);
+  padding: 0.7rem;
+  background:
+    repeating-linear-gradient(transparent 0 27px, rgba(22, 22, 22, 0.08) 27px 28px);
+}
+.theme-spaustuve .field input:focus,
+.theme-spaustuve .field select:focus,
+.theme-spaustuve .field textarea:focus {
+  border-color: var(--accent);
+  background-color: rgba(var(--accent-rgb), 0.04);
+  box-shadow: none;
+}
+.theme-spaustuve .field select option {
+  color: var(--ink);
+  background: #fff;
+}
+.theme-spaustuve .check input {
+  border-color: rgba(22, 22, 22, 0.45);
+  border-radius: 0;
+}
+.theme-spaustuve .register .form__submit {
+  background: var(--accent);
+}
+.theme-spaustuve .form-ok__icon {
+  color: #fff;
+  box-shadow: none;
+}
+
+/* --- kontaktai: kontaktų sąrašas kaip didelė vizitinė --- */
+.theme-spaustuve .contact-list {
+  position: relative;
+  padding: 1.4rem 1.6rem;
+  background: #fff;
+  box-shadow: 0 20px 40px -26px rgba(0, 0, 0, 0.45);
+  outline: 1px dashed rgba(22, 22, 22, 0.35);
+  outline-offset: 10px;
+}
+.theme-spaustuve .contact-list > div:first-child {
+  border-top: 0;
+}
+.theme-spaustuve .contact-list > div:last-child {
+  border-bottom: 0;
+}
+.theme-spaustuve .contact-list::after {
+  content: '✂';
+  position: absolute;
+  top: -22px;
+  left: 1.2rem;
+  padding: 0 0.3rem;
+  background: var(--bg);
+  font-size: 0.95rem;
+  color: var(--faint);
+}
+.theme-spaustuve .map__frame {
+  background:
+    radial-gradient(50% 50% at 50% 45%, rgba(var(--accent-rgb), 0.14), transparent 70%),
+    linear-gradient(rgba(22, 22, 22, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(22, 22, 22, 0.06) 1px, transparent 1px) 0 0 / 44px 44px,
+    #fff;
+}
+
+/* --- poraštė: tamsi su CMYK juosta --- */
+.theme-spaustuve .site-footer {
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.68);
+  --faint: rgba(255, 255, 255, 0.4);
+  --line: rgba(255, 255, 255, 0.14);
+  position: relative;
+  background: var(--k);
+  color: var(--text);
+  border-top: 0;
+}
+.theme-spaustuve .site-footer::before {
+  content: '';
+  display: block;
+  height: 8px;
+  background: linear-gradient(90deg, var(--c) 0 25%, var(--m) 25% 50%, var(--y) 50% 75%, var(--accent) 75%);
+}
+.theme-spaustuve .site-footer__word {
+  display: none;
+}
+.theme-spaustuve .site-footer__grid {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+.theme-spaustuve .site-footer .brand-logo__b {
+  color: #fff;
+}
+
+/* --- vidiniai puslapiai ir kortelės kūrėjas --- */
+.theme-spaustuve .page-head {
+  background: none;
+}
+.theme-spaustuve .card-maker::before {
+  background:
+    linear-gradient(rgba(22, 22, 22, 0.045) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(22, 22, 22, 0.045) 1px, transparent 1px) 0 0 / 28px 28px;
+}
+.theme-spaustuve .cm__box {
+  border-color: var(--ink);
+}
+.theme-spaustuve .cm__legend span {
+  background: var(--accent);
+}
+.theme-spaustuve .cm .field input {
+  border: 1.5px solid rgba(22, 22, 22, 0.22);
+  padding-inline: 0.75rem;
+}
+.theme-spaustuve .cm__swatch > span:first-of-type,
+.theme-spaustuve .cm__swatch--custom input[type='color'] {
+  border-color: rgba(22, 22, 22, 0.2);
+}
+.theme-spaustuve .cm__swatch input:checked + span {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--ink);
+}
+.theme-spaustuve .cm__tpl input:focus-visible ~ .cm__thumb {
+  outline-color: var(--ink);
+}
+.theme-spaustuve .cm__thumb {
+  box-shadow: 0 0 0 1px rgba(22, 22, 22, 0.12), 0 6px 16px -8px rgba(0, 0, 0, 0.5);
+}
+.theme-spaustuve .cm__seg {
+  border-color: rgba(22, 22, 22, 0.25);
+}
+.theme-spaustuve .cm__stage {
+  background: #e9e5dc;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.theme-spaustuve .cm__stage::before {
+  background: #dfdacf;
+}
+.theme-spaustuve .cm__order-btn {
+  background: var(--ink);
+  color: #fff;
+}
+.theme-spaustuve .cm-order {
+  border-color: var(--ink);
+}
+.theme-spaustuve .cm-order__close {
+  color: var(--ink);
+}
+.theme-spaustuve .check a {
+  color: var(--ink);
+}
+.theme-spaustuve .check a:hover {
+  color: var(--accent);
+}

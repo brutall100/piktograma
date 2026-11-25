@@ -233,5 +233,14 @@
   "card.orderSubmit": "Send order",
   "card.close": "Close",
   "card.service": "Business cards (card maker)",
-  "card.preview": "Card preview"
+  "card.preview": "Card preview",
+  "demo.theme": "Design:",
+  "theme.kortele": "Card",
+  "theme.spaustuve": "Print shop",
+  "hero.facts1": "founded",
+  "hero.facts2": "Jonava",
+  "hero.facts3": "one place for all",
+  "hero.cardNote": "Your card – our work. 90 × 50 mm, 350 gsm",
+  "register.sheet": "Order sheet",
+  "contacts.cardNote": "Cut out and keep"
 }
