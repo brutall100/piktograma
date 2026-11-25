@@ -313,15 +313,6 @@ const settingsGroups = [
     ],
   },
   {
-    key: 'social',
-    title: 'Socialiniai tinklai',
-    intro: 'Įklijuokite pilnas nuorodas (https://…). Tuščios nuorodos nerodomos.',
-    fields: [
-      { name: 'tiktok', label: 'TikTok', type: 'url' },
-      { name: 'youtube', label: 'YouTube', type: 'url' },
-    ],
-  },
-  {
     key: 'misc',
     title: 'Užklausos ir SEO',
     fields: [
