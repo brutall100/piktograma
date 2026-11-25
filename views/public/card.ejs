@@ -32,7 +32,7 @@
 <section class="card-maker" data-card-maker data-i18n="<%= JSON.stringify(i18n) %>">
   <div class="container">
     <header class="card-maker__head">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="<%= paths.home %>"><%= t('nav.home') %></a><span aria-hidden="true">/</span><span><%= t('card.pageTitle') %></span></nav>
+      <nav class="crumbs" aria-label="<%= t('nav.breadcrumb') %>"><a href="<%= paths.home %>"><%= t('nav.home') %></a><span aria-hidden="true">/</span><span><%= t('card.pageTitle') %></span></nav>
       <p class="label"><%= t('card.label') %></p>
       <h1 class="h2"><%= t('card.title') %> <em><%= t('card.titleAccent') %></em></h1>
       <p class="card-maker__intro"><%= t('card.intro') %></p>
@@ -54,7 +54,7 @@
             <span class="field__label"><%= t('card.logo') %></span>
             <div class="cm__logo-row">
               <label class="btn btn--ghost btn--sm cm__file">
-                <%- icon('upload', 18) %> <span data-cm-logo-name><%= t('card.logo') %>…</span>
+                <%- icon('upload', 18) %> <span data-cm-logo-name><%= t('card.logoBtn') %></span>
                 <input type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" data-cm-logo class="sr-only">
               </label>
               <button class="cm__link" type="button" data-cm-logo-remove hidden><%= t('card.logoRemove') %></button>
@@ -80,9 +80,9 @@
           <p class="field__label"><%= t('card.color') %></p>
           <div class="cm__colors" role="radiogroup" aria-label="<%= t('card.color') %>">
             <% colors.forEach((c, i) => { %>
-            <label class="cm__swatch" style="--c:<%= c %>" title="<%= c %>">
+            <label class="cm__swatch" style="--c:<%= c %>" title="<%= t('card.c.' + c.slice(1)) %>">
               <input type="radio" name="color" value="<%= c %>" <%= i === 0 ? 'checked' : '' %> class="sr-only">
-              <span aria-hidden="true"></span><span class="sr-only"><%= c %></span>
+              <span aria-hidden="true"></span><span class="sr-only"><%= t('card.c.' + c.slice(1)) %></span>
             </label>
             <% }) %>
             <label class="cm__swatch cm__swatch--custom" title="<%= t('card.colorCustom') %>">

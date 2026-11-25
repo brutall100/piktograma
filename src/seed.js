@@ -120,7 +120,7 @@ async function seed() {
     ['print', 'Spaudos darbai', 'Printing',
       'Skrajutės, lankstinukai, plakatai, kvietimai, blankai, kalendoriai ir kiti spaudiniai – nuo A6 iki didelio formato.',
       'Flyers, leaflets, posters, invitations, forms, calendars and more – from A6 up to large format.',
-      'A6 – A0', 'A6 – A0', 'nuo 0,10 € / vnt.', 'from €0.10 / pc'],
+      'A6–A0', 'A6–A0', 'nuo 0,10 € / vnt.', 'from €0.10 / pc'],
     ['sign', 'Iškabos ir lauko reklama', 'Signs & outdoor',
       'Iškabos, reklaminiai skydai, stendai ir tentai su spauda. Pagaminame ir sumontuojame.',
       'Shop signs, advertising boards, stands and printed banners. We make and install them.',

@@ -233,5 +233,18 @@
   "card.orderSubmit": "Send order",
   "card.close": "Close",
   "card.service": "Business cards (card maker)",
-  "card.preview": "Card preview"
+  "card.preview": "Card preview",
+  "cardPromo.mockLogo": "Your logo",
+  "cardPromo.mockName": "Jane Doe",
+  "cardPromo.mockRole": "Director",
+  "card.logoBtn": "Upload logo",
+  "nav.breadcrumb": "Breadcrumb",
+  "card.c.e53126": "Red",
+  "card.c.111214": "Black",
+  "card.c.1f3a68": "Navy",
+  "card.c.0f8b8d": "Teal",
+  "card.c.2e7d4f": "Green",
+  "card.c.f08a24": "Orange",
+  "card.c.6b3fa0": "Purple",
+  "card.c.b08d3c": "Gold"
 }

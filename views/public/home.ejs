@@ -171,12 +171,12 @@
     </div>
     <a class="card-promo__visual" href="<%= paths.card %>" tabindex="-1" aria-hidden="true" data-reveal>
       <span class="mini-card mini-card--back">
-        <span class="mini-card__logo"><i></i>Jūsų logo</span>
+        <span class="mini-card__logo"><i></i><%= t('cardPromo.mockLogo') %></span>
       </span>
       <span class="mini-card mini-card--front">
         <span class="mini-card__corner"></span>
-        <span class="mini-card__name">Vardenis Pavardenis</span>
-        <span class="mini-card__role">Direktorius</span>
+        <span class="mini-card__name"><%= t('cardPromo.mockName') %></span>
+        <span class="mini-card__role"><%= t('cardPromo.mockRole') %></span>
         <span class="mini-card__lines"><i></i><i></i><i></i></span>
       </span>
     </a>
@@ -305,7 +305,7 @@
         <% if (p.highlighted) { %><p class="price__flag"><%= t('prices.popular') %></p><% } %>
         <h3 class="price__name"><%= L(p, 'name') %></h3>
         <% const pm = String(p.price).match(/^(nuo|from)\s+(.+)$/i); %>
-        <p class="price__amount"><% if (pm) { %><small><%= t('prices.from') %></small> <% } %><strong><%= pm ? pm[2] : p.price %></strong><% if (L(p, 'period')) { %> <span><%= L(p, 'period') %></span><% } %></p>
+        <p class="price__amount"><% if (pm) { %><small><%= t('prices.from') %></small> <% } %><% const amt = pm ? pm[2] : p.price; %><strong><%= lang === 'en' ? amt.replace(/^([\d.,]+)\s*€$/, (m, n) => '€' + n.replace(',', '.')) : amt %></strong><% if (L(p, 'period')) { %> <span><%= L(p, 'period') %></span><% } %></p>
         <% const feats = lines(L(p, 'features')); if (feats.length) { %>
         <ul class="price__list">
           <% feats.forEach((f) => { %><li><%- icon('check', 18) %><span><%= f %></span></li><% }) %>
